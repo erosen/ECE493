@@ -30,13 +30,29 @@ END Behavior;
 
 \subsubsection{Implementing Logic}
 
-Implement the hardware from the circuit in Figure \ref{circuit1}. The inputs should come from SW[1] and SW[2] and the output should be shown on any of the available LEDs. Use the implemented circuit to test and create a truth table with your results and place it within a comment in the program file.
+Implement the hardware from the circuit in Figure \ref{fig:circuit1}. The inputs should come from SW(1) and SW(2) and the output should be shown on any of the available LEDs. Use the implemented circuit to test and create a truth table with your results and place it within a comment in the program file.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=100mm]{Lab1/figures/circuit1.png}
 	\caption{Circuit for activity 1}
-	\label{circuit1}
+	\label{fig:circuit1}
 \end{figure}
 
-\subsubsection{7-Segment Displays}
+\subsubsection{7 Segment Display Decoder}
+
+The 7-segment display is comprised of 7 LEDs that are arranged in such a way that allows for the creation of the numbers 0-9 and a select few characters with some clever use. Figure \ref{fig:7seg} shows the block diagram and output table. Your task is to create a 3 input, 7 output decoder that will display a number from 0-6. To accomplish this task, you should program the switches SW(0) - SW(6) to make the first 7 displays show the numbers 0-6 when its switch is turned on.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab1/figures/7seg.png}
+	\caption{7 segment display and decoder}
+	\label{fig:7seg}
+\end{figure}
+
+{\bf Tips:} 
+\begin{itemize}
+  \item The eight 7 segment displays can be accesed with the 7-bit signal vectors HEX0\ldots HEX7. For example, to output to the first display (HEX0) you can either set each bit individually (HEX0(5) <= `1';) or set the whole vector with (HEX0 <= `1111111') which would display the number 8. 
+  \item The second item
+  \item The third etc \ldots
+\end{itemize}

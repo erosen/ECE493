@@ -1,9 +1,8 @@
-\documentclass[pdftex,10.5pt]{report}
+\documentclass{article}
 \usepackage{amsmath}
 \usepackage{caption}
 \usepackage{graphicx}
 \usepackage{import}
-\usepackage[hmargin=1.0in,vmargin=1.0in]{geometry}
 \usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{multicol}
@@ -18,6 +17,28 @@
 \usepackage{listings}
 \usepackage{amsmath}
 
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
 
 \usetkzobj{all} 
 \usepackage{float}
@@ -28,8 +49,7 @@
 \makeatletter
 \renewcommand\bibsection{
   \section*{\refname
-    \@mkboth{\MakeUppercase{\refname}}{\MakeUppercase{\refname}}}
-}
+\@mkboth{\MakeUppercase{\refname}}{\MakeUppercase{\refname}}}}
 \makeatother
 
 \lstset{numbers=left, stepnumber=1, frame=single, breaklines=true, language=VHDL}
@@ -47,15 +67,15 @@
 
 \includegraphics{RU_INF_SEAL_CMYK}\\[1cm] % Include a department/university logo - this will require the graphicx package
 
-\textsc{\LARGE Rutgers, the State University of New Jersey}\\[1.5cm] % Name of your university/college
+\textsc{\LARGE Rutgers, the State University of New
+Jersey}\\[1.5cm] % Name of your university/college
 \textsc{\Large ECE493 Special Topics}\\[0.5cm] % Major heading such as course name
 
 \HRule \\[0.4cm]
 { \huge \bfseries Hardware/Software Design of Embedded Systems Laboratory}\\[0.4cm] % Title of your document
 \HRule \\[1.5cm]
 
-{\large Fall 2013}\\[3cm] % Date, change the \today to a set date if you want to be precise
-
+{\large Fall 2013}\\[3cm] 
 
 \vfill % Fill the rest of the page with whitespace
 
@@ -64,7 +84,6 @@
 %%%% ToC %%%%
 \tableofcontents
 \newpage
-
 
 %%%% Lab Content %%%%%
 
@@ -95,6 +114,7 @@
 \input{Lab7/lab7.tex}
 
 \newpage
+
 
 \input{project/finalproject.tex}
 
