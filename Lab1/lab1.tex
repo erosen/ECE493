@@ -3,7 +3,65 @@
 \subsection{Introduction}
 This lab will introduce you to the Altera DE2-115 FPGA Development Board. The DE2-115 contains all of the hardware necessary to prototype and create various hardware configurations on the Altera Cyclone IV FPGA chip that will be used throughout the course of this lab. By completing this lab, you will have an understanding of all the hardware contained on the FPGA development board, along with an understanding of how to connect peripherals to the development board. Lastly, this lab will go over the standard template for designing hardware in the VHDL programming language. All this will be accomplished by following the Quartus II introductory packet along with the following activities.
 
-\subsection{VHDL Basics}
+\subsection{Pre-Lab}
+
+\subsection{Working with Quartus II}
+
+\subsubsection{Creating a New Project}
+File > New Project Wizard %Figure
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=45mm]{Lab1/figures/step1.png}
+	\caption{Create a new project menu}
+	\label{fig:step1}
+\end{figure}
+
+NEXT
+
+Create a folder in your Z-drive called FPGA Lab
+
+Create a folder in FPGA Lab called lab1
+
+Set the working directory to lab1
+
+Name the project to lab1
+
+NEXT
+
+Skip this step, NEXT
+
+Under Device Family select Cyclone IV E, set package to FBGA, pin count to 780, and speed grade to 7. 
+in the Available devices list, look for and select EP4CE115F29C7 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab1/figures/step2.png}
+	\caption{Device selection menu}
+	\label{fig:step2}
+\end{figure}
+
+FINISH
+
+File > New > VHDL File > OK % Figure
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=50mm]{Lab1/figures/newfile.png}
+	\caption{Create a new file menu}
+	\label{fig:newfile}
+\end{figure}
+
+File > Save As > \emph{lab1.vhd} > SAVE
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=65mm]{Lab1/figures/saveas.png}
+	\caption{Save As dialog box}
+	\label{fig:saveas}
+\end{figure}
+
+\subsubsection{VHDL Basics}
 
 The following code block shows how to interact with the switches and LEDs on the DE2-115. Notice how the program begins with importing the ieee library which contains all of the basic logic primitives as established within the IEEE standard 1164. When working in industry it is common for large companies to create their own libraries as well. Every VHDL file should contain at least one entity (module) that is the same as the name of the file. An entity contains information about the structure of the module such as how many inputs/outputs (I/O) and what type of logic to expect at the I/O. Finally we define the entity in an architecture block, this section does the work on the hardware. As can be seen, this code is setting the red LEDs as defined in the array to the accompanying switches on the board. Take note on the use of comments throughout the code, comments begin with two dashes (--) and should always be used to describe what you are trying to accomplish, this way someone else who reads your code will understand it easily and your code will look more professional. 
 
@@ -24,6 +82,42 @@ BEGIN
 	LEDR <= SW; -- Assign each switch to one red LED
 END Behavior;
 \end{lstlisting}
+
+\subsubsection{Setting Pin Assignments}
+
+Assignments > Import Assignments >  Select \emph{... .qsf} %figure
+ADVANCED > Check Global Assignments > Ok %Figure
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=70mm]{Lab1/figures/importassign.png}
+	\caption{Import assignments dialog box}
+	\label{fig:importassign}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=85mm]{Lab1/figures/advancedimport.png}
+	\caption{Import assignments advanced options menu}
+	\label{fig:advancedimport}
+\end{figure}
+\subsubsection{Compiling Hardware}
+
+Processing > Start Compilation or Ctrl + L
+
+If the project compiles succefully, you may proceed to uploading the hardware. Otherwise if you have any errors you should debug your code. It's helpful to note that the first error should be solved first which will make it easier to solve the other errors.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab1/figures/compileresults.png}
+	\caption{Succeful completion of compilation}
+	\label{fig:compileresuts}
+\end{figure}
+
+
+\subsubsection{Uploading Hardware to Device}
+
+%figure
 
 
 \subsection{Activities}
