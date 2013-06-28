@@ -5,10 +5,18 @@ This lab will introduce you to the Altera DE2-115 FPGA Development Board. The DE
 
 \subsection{Pre-Lab}
 
+Before attempting this lab, you should complete the following:
+\begin{itemize}
+\item Download and install the\emph{Quartus II 13.0 Web Edition Software} from the Altera website to your personal computer
+\item Read through the document titled \emph{DE2-115 User Manual}
+\end{itemize}
+ 
 \subsection{Working with Quartus II}
 
 \subsubsection{Creating a New Project}
-File > New Project Wizard %Figure
+\begin{enumerate}
+	\item In order to begin working on your first FPGA project, you must open the program Altera Quartus II. To begin a new project goto  {\bf File $\rightarrow$ New Project Wizard} as shown in figure \ref{fig:step1}
+
 
 \begin{figure}[H]
 	\centering
@@ -17,22 +25,22 @@ File > New Project Wizard %Figure
 	\label{fig:step1}
 \end{figure}
 
-NEXT
+	\item When the \emph{New Project Wizard} window opens click {\bf NEXT}
 
-Create a folder in your Z-drive called FPGA Lab
+	\item Create a folder in your Z-drive called FPGA Lab
 
-Create a folder in FPGA Lab called lab1
+	\item Create a folder in FPGA Lab called lab1
 
-Set the working directory to lab1
+	\item Set the working directory to lab1
 
-Name the project to lab1
+	\item Name the project \emph{lab1}
 
-NEXT
+	\item Click {\bf NEXT} to proceed
 
-Skip this step, NEXT
+	\item Skip this step, click  {\bf NEXT} to proceed
 
-Under Device Family select Cyclone IV E, set package to FBGA, pin count to 780, and speed grade to 7. 
-in the Available devices list, look for and select EP4CE115F29C7 
+	\item Under Device Family select \emph{Cyclone IV E}, set the package to \emph{FBGA}, pin count to \emph{780}, and speed grade to \emph{7}. In the Available devices list, look for and select \emph{EP4CE115F29C7} as shown in figure \ref{fig:step2}.
+	
 
 \begin{figure}[H]
 	\centering
@@ -41,9 +49,14 @@ in the Available devices list, look for and select EP4CE115F29C7
 	\label{fig:step2}
 \end{figure}
 
-FINISH
+	\item Click {\bf FINISH} to begin your new project
 
-File > New > VHDL File > OK % Figure
+\end{enumerate}
+
+\subsubsection{Creating an Empty File}
+\begin{enumerate}
+
+\item goto {\bf File $\rightarrow$ New $\rightarrow$ VHDL File $\rightarrow$ OK } as shown in figure \ref{fig:newfile}
 
 \begin{figure}[H]
 	\centering
@@ -52,7 +65,7 @@ File > New > VHDL File > OK % Figure
 	\label{fig:newfile}
 \end{figure}
 
-File > Save As > \emph{lab1.vhd} > SAVE
+\item Save this new file by going to {\bf File $\rightarrow$ Save As $\rightarrow$ \emph{lab1.vhd} $\rightarrow$ SAVE} as shown in figure \ref{fig:saveas}
 
 \begin{figure}[H]
 	\centering
@@ -61,7 +74,9 @@ File > Save As > \emph{lab1.vhd} > SAVE
 	\label{fig:saveas}
 \end{figure}
 
-\subsubsection{VHDL Basics}
+\end{enumerate}
+
+\subsubsection{Writing VHDL Code}
 
 The following code block shows how to interact with the switches and LEDs on the DE2-115. Notice how the program begins with importing the ieee library which contains all of the basic logic primitives as established within the IEEE standard 1164. When working in industry it is common for large companies to create their own libraries as well. Every VHDL file should contain at least one entity (module) that is the same as the name of the file. An entity contains information about the structure of the module such as how many inputs/outputs (I/O) and what type of logic to expect at the I/O. Finally we define the entity in an architecture block, this section does the work on the hardware. As can be seen, this code is setting the red LEDs as defined in the array to the accompanying switches on the board. Take note on the use of comments throughout the code, comments begin with two dashes (--) and should always be used to describe what you are trying to accomplish, this way someone else who reads your code will understand it easily and your code will look more professional. 
 
