@@ -3,12 +3,29 @@
 \subsection{Introduction}
 This lab will introduce you to the Altera DE2-115 FPGA Development Board. The DE2-115 contains all of the hardware necessary to prototype and create various hardware configurations on the Altera Cyclone IV FPGA chip that will be used throughout the course of this lab. By completing this lab, you will have an understanding of all the hardware contained on the FPGA development board, along with an understanding of how to connect peripherals to the development board. Lastly, this lab will go over the standard template for designing hardware in the VHDL programming language. All this will be accomplished by following the Quartus II introductory packet along with the following activities.
 
+\subsection{The DE2-115 FPGA Development Board}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=170mm]{Lab1/figures/DE2-115.jpg}
+	\caption{The DE2-115 FPGA Development Board}
+	\label{fig:DE2-115}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=170mm]{Lab1/figures/DE2-115Block.png}
+	\caption{The DE2-115 Block Diagram}
+	\label{fig:DE2Block}
+\end{figure}
+
 \subsection{Pre-Lab}
 
 Before attempting this lab, you should complete the following:
+
 \begin{itemize}
-\item Download and install the\emph{Quartus II 13.0 Web Edition Software} from the Altera website to your personal computer
-\item Read through the document titled \emph{DE2-115 User Manual}
+	\item Download and install the \emph{Quartus II 13.0 Web Edition Software} from the Altera website to your personal computer
+	\item Download and read the following documents from the Sakai Resources pags;  \emph{DE2-115 User Manual}, \emph{Quartus II Introduction}
 \end{itemize}
  
 \subsection{Working with Quartus II}
@@ -17,19 +34,18 @@ Before attempting this lab, you should complete the following:
 \begin{enumerate}
 	\item In order to begin working on your first FPGA project, you must open the program Altera Quartus II. To begin a new project goto  {\bf File $\rightarrow$ New Project Wizard} as shown in figure \ref{fig:step1}
 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=45mm]{Lab1/figures/step1.png}
-	\caption{Create a new project menu}
-	\label{fig:step1}
-\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=45mm]{Lab1/figures/step1.png}
+		\caption{Create a new project menu}
+		\label{fig:step1}
+	\end{figure}
 
 	\item When the \emph{New Project Wizard} window opens click {\bf NEXT}
 
-	\item Create a folder in your Z-drive called FPGA Lab
+	\item Create a folder in your Z-drive called \emph{FPGA Lab}
 
-	\item Create a folder in FPGA Lab called lab1
+	\item Create a folder in FPGA Lab called \emph{lab1}
 
 	\item Set the working directory to lab1
 
@@ -42,12 +58,12 @@ Before attempting this lab, you should complete the following:
 	\item Under Device Family select \emph{Cyclone IV E}, set the package to \emph{FBGA}, pin count to \emph{780}, and speed grade to \emph{7}. In the Available devices list, look for and select \emph{EP4CE115F29C7} as shown in figure \ref{fig:step2}.
 	
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=100mm]{Lab1/figures/step2.png}
-	\caption{Device selection menu}
-	\label{fig:step2}
-\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=100mm]{Lab1/figures/step2.png}
+		\caption{Device selection menu}
+		\label{fig:step2}
+	\end{figure}
 
 	\item Click {\bf FINISH} to begin your new project
 
@@ -56,23 +72,23 @@ Before attempting this lab, you should complete the following:
 \subsubsection{Creating an Empty File}
 \begin{enumerate}
 
-\item goto {\bf File $\rightarrow$ New $\rightarrow$ VHDL File $\rightarrow$ OK } as shown in figure \ref{fig:newfile}
+	\item Goto {\bf File $\rightarrow$ New $\rightarrow$ VHDL File $\rightarrow$ OK } as shown in figure \ref{fig:newfile}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=50mm]{Lab1/figures/newfile.png}
-	\caption{Create a new file menu}
-	\label{fig:newfile}
-\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=50mm]{Lab1/figures/newfile.png}
+		\caption{Create a new file menu}
+		\label{fig:newfile}
+	\end{figure}
 
-\item Save this new file by going to {\bf File $\rightarrow$ Save As $\rightarrow$ \emph{lab1.vhd} $\rightarrow$ SAVE} as shown in figure \ref{fig:saveas}
+	\item Save this new file by going to {\bf File $\rightarrow$ Save As $\rightarrow$ \emph{lab1.vhd} $\rightarrow$ SAVE} as shown in figure \ref{fig:saveas}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=65mm]{Lab1/figures/saveas.png}
-	\caption{Save As dialog box}
-	\label{fig:saveas}
-\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=65mm]{Lab1/figures/saveas.png}
+		\caption{Save As dialog box}
+		\label{fig:saveas}
+	\end{figure}
 
 \end{enumerate}
 
@@ -99,9 +115,15 @@ END Behavior;
 \end{lstlisting}
 
 \subsubsection{Setting Pin Assignments}
+The Cyclone IV chip on the DE2-115 contains 780 pins. The majoprity of these pins have copper traces to the hardware the control on the development board. As a result, Altera has provided a file that contains all of the pin assignments so that you can interface directly with the pins in your VHDL code. To set the pin assignments:
 
-Assignments > Import Assignments >  Select \emph{... .qsf} %figure
-ADVANCED > Check Global Assignments > Ok %Figure
+ \begin{enumerate}  
+ 
+	\item Goto {\bf Assignments $\rightarrow$  Import Assignments $\rightarrow$  Select \emph DE2-115.qsf} as shown in figure \ref{fig:importassign}.This file can be dowloaded from the Altera website
+	
+	\item Then click {\bf ADVANCED $\rightarrow$ check Global Assignments $\rightarrow$ Ok} as shown in figure \ref{fig:advancedimport}
+
+\end{enumerate}
 
 \begin{figure}[H]
 	\centering
@@ -116,11 +138,16 @@ ADVANCED > Check Global Assignments > Ok %Figure
 	\caption{Import assignments advanced options menu}
 	\label{fig:advancedimport}
 \end{figure}
+
 \subsubsection{Compiling Hardware}
 
-Processing > Start Compilation or Ctrl + L
+\begin{enumerate}
 
-If the project compiles successfully, you may proceed to uploading the hardware. Otherwise if you have any errors you should debug your code. It's helpful to note that the first error should be solved first which will make it easier to solve the other errors.
+	\item to begin compiling your hardware, {\bf Processing $\rightarrow$ Start Compilation} or you may press \emph{Ctrl + L} on your keyboard
+
+\end{enumerate}
+
+If the project compiles successfully, you may proceed to uploading the hardware. Otherwise if you have any errors you should debug your code. It is helpful to note that the first error should be solved first which will make it easier to solve the other errors. A succefull compilation will look like figure \ref{fig:compileresuts}.
 
 \begin{figure}[H]
 	\centering
@@ -128,6 +155,8 @@ If the project compiles successfully, you may proceed to uploading the hardware.
 	\caption{Successful completion of compilation}
 	\label{fig:compileresuts}
 \end{figure}
+
+\subsubsection{Testing Hardware with Waveforms}
 
 
 \subsubsection{Uploading Hardware to Device}
@@ -144,36 +173,48 @@ Once the hardware has compiled successfully, goto {\bf Tools $\rightarrow$ Progr
 
 \begin{enumerate}
 
-\item JTAG or Joint Test Action Group
+	\item JTAG or Joint Test Action Group
 
 	\begin{itemize}
-	\item This method loads the hardware directly to the FPGA chip
-	\item The FPGA is unable to save its current state so if the power is turned off the programmed hardware will disappear
-	\item To program the FPGA with this method all you need to do is connect the USB cable to the development board and ensure that under {\bf Hardware Setup} that USB-Blaster is selected. Then you must goto {\bf Add Files} and add your compiled \emph{lab1.sof} file
-	\item Press {\bf START} to upload your hardware, in a few moments you should see your development board behaving as instructed by your code
+	
+		\item This method loads the hardware directly to the FPGA chip
+		
+		\item The FPGA is unable to save its current state so if the power is turned off the programmed hardware will disappear
+		
+		\item To program the FPGA with this method all you need to do is connect the USB cable to the development board and ensure that under {\bf Hardware Setup} that USB-Blaster is selected. Then you must goto {\bf Add Files} and add your compiled \emph{lab1.sof} file
+		
+		\item Press {\bf START} to upload your hardware, in a few moments you should see your development board behaving as instructed by your code
+		
 	\end{itemize}
 
 \item Active Serial
 
 	\begin{itemize}
-	\item This method loads the hardware on to the on-board configuration device. What this means is that the hardware description is saved into memory and is loaded onto the FPGA chip whenever the board is powered on. This method is more desirable because it allows the FPGA to work without being connected to the computer and only to an external power source.
-	\item Before beginning this method you should first check that under {\bf Assignments $\rightarrow$ Device $\rightarrow$ Device and Pin Options} are configured in the same way as figure \ref{fig:activeserialconfig}, if not you must set the configuration scheme to \emph{Active Serial} and also set  the configuration device to \emph{EPCS64}. If this was not set you must recompile your hardware.
+		\item This method loads the hardware on to the on-board configuration device. What this means is that the hardware description is saved into memory and is loaded onto the FPGA chip whenever the board is powered on. This method is more desirable because it allows the FPGA to work without being connected to the computer and only to an external power source.
+		
+		\item Before beginning this method you should first check that under {\bf Assignments $\rightarrow$ Device $\rightarrow$ Device and Pin Options} are configured in the same way as figure \ref{fig:activeserialconfig}, if not you must set the configuration scheme to \emph{Active Serial} and also set  the configuration device to \emph{EPCS64}. If this was not set you must recompile your hardware.
 
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=100mm]{Lab1/figures/activeserialconfig.png}
-	\caption{Active Serial Configuration Settings}
-	\label{fig:activeserialconfig}
-	\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=100mm]{Lab1/figures/activeserialconfig.png}
+			\caption{Active Serial Configuration Settings}	
+			\label{fig:activeserialconfig}
+		\end{figure}
 
-	\item Next once again ensure that the hardware is set to \emph{USB-Blaster} and that the mode is set to \emph{Active Serial}
-	\item Click on {\bf Add Files}, and select \emph{lab1.pof}. 
-	\item Ensure that the development board is switched to \emph{PROG}
-	\item Click {\bf START} to begin programming. This method takes slightly longer.
-	\item Switch the board back into the \emph{RUN} position and verify that your logic is behaving properly
+		\item Next once again ensure that the hardware is set to \emph{USB-Blaster} and that the mode is set to \emph{Active Serial}
+		
+		\item Click on {\bf Add Files}, and select \emph{lab1.pof}
+		
+		\item Ensure that the development board is switched to \emph{PROG}
+		
+		\item Click {\bf START} to begin programming. This method takes slightly longer
+		
+		\item Switch the board back into the \emph{RUN} position and verify that your logic is behaving properly
+		
 	\end{itemize}
 
 \end{enumerate}
+
 \subsection{Activities}
 
 \subsubsection{Implementing Logic}
