@@ -120,21 +120,60 @@ ADVANCED > Check Global Assignments > Ok %Figure
 
 Processing > Start Compilation or Ctrl + L
 
-If the project compiles succefully, you may proceed to uploading the hardware. Otherwise if you have any errors you should debug your code. It's helpful to note that the first error should be solved first which will make it easier to solve the other errors.
+If the project compiles successfully, you may proceed to uploading the hardware. Otherwise if you have any errors you should debug your code. It's helpful to note that the first error should be solved first which will make it easier to solve the other errors.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=100mm]{Lab1/figures/compileresults.png}
-	\caption{Succeful completion of compilation}
+	\caption{Successful completion of compilation}
 	\label{fig:compileresuts}
 \end{figure}
 
 
 \subsubsection{Uploading Hardware to Device}
 
-%figure
+Once the hardware has compiled successfully, goto {\bf Tools $\rightarrow$ Programmer} to open the hardware upload options. There are two typical modes for uploading hardware and it is important to understand when to use them. This can be seen in figure \ref{fig:uploadmethod}.
 
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab1/figures/uploadmethod.png}
+	\caption{Modes for uploading hardware to the FPGA device}
+	\label{fig:uploadmethod}
+\end{figure}
+
+\begin{enumerate}
+
+\item JTAG or Joint Test Action Group
+
+	\begin{itemize}
+	\item This method loads the hardware directly to the FPGA chip
+	\item The FPGA is unable to save its current state so if the power is turned off the programmed hardware will disappear
+	\item To program the FPGA with this method all you need to do is connect the USB cable to the development board and ensure that under {\bf Hardware Setup} that USB-Blaster is selected. Then you must goto {\bf Add Files} and add your compiled \emph{lab1.sof} file
+	\item Press {\bf START} to upload your hardware, in a few moments you should see your development board behaving as instructed by your code
+	\end{itemize}
+
+\item Active Serial
+
+	\begin{itemize}
+	\item This method loads the hardware on to the on-board configuration device. What this means is that the hardware description is saved into memory and is loaded onto the FPGA chip whenever the board is powered on. This method is more desirable because it allows the FPGA to work without being connected to the computer and only to an external power source.
+	\item Before beginning this method you should first check that under {\bf Assignments $\rightarrow$ Device $\rightarrow$ Device and Pin Options} are configured in the same way as figure \ref{fig:activeserialconfig}, if not you must set the configuration scheme to \emph{Active Serial} and also set  the configuration device to \emph{EPCS64}. If this was not set you must recompile your hardware.
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab1/figures/activeserialconfig.png}
+	\caption{Active Serial Configuration Settings}
+	\label{fig:activeserialconfig}
+	\end{figure}
+
+	\item Next once again ensure that the hardware is set to \emph{USB-Blaster} and that the mode is set to \emph{Active Serial}
+	\item Click on {\bf Add Files}, and select \emph{lab1.pof}. 
+	\item Ensure that the development board is switched to \emph{PROG}
+	\item Click {\bf START} to begin programming. This method takes slightly longer.
+	\item Switch the board back into the \emph{RUN} position and verify that your logic is behaving properly
+	\end{itemize}
+
+\end{enumerate}
 \subsection{Activities}
 
 \subsubsection{Implementing Logic}
