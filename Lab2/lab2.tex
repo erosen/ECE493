@@ -1,14 +1,39 @@
 \section{Lab 2 - Latches, Flip-Flops, and Counters}
 
 \subsection{Introduction}
+Elementary latches and flip-flops have been used for years as a means to store temporary data either from the outputs of logic operations or by setting them to configure logic to behave in certain ways. This lab will go into the aspects of creating latches and flip-flops which will then be used to create a counter. 
+
+\subsection{Pre-lab}
+Before you begin this lab you should:
+
+\begin{itemize}
+	\item Write down the truth table for a D-latch, SR-latch and J-K flip-flop
+	\item Design a block diagram for an 8-bit counter using J-K flip-flops
+\end{itemize} 
 
 \subsection{Lab Activities}
 
 \subsubsection{Latches}
-Activity on SR Latch
+The following VHDL code implements the logic for a D-latch based off of the schematic in figure ??. 
+
+% code for figure
+
+Using this as a reference, design VHDL for an SR-latch with a clock input. Verify with waveforms that the circuit behaves the same as the truth table you created in the pre-lab.
+
 
 \subsubsection{Flip-Flop}
-Activity on JK
+Design VHDL code that implements the logic for a J-K flip-flop from figure ??. Verify with waveforms that the circuit behaves the same as the truth table you created in the pre-lab 
 
 \subsubsection{Counters}
-Create a counter that can increment and decrement with the use of a switch and pushbuttons.....
+In the pre-lab, you created a block diagram for an 8-bit counter using J-K flip flops. Using the same VHDL code you created for implementing the J-K flip-flop, implement an 8-bit counter that increments when you press KEY0 on the DE2-115 development board. Link the binary output of the flip-flops to the red LEDs and then convert the binary value into hexadecimal to be shown on the 7-segment displays. \emph{Hint: you should refer to your code for the 7-segment display driver designed in the previous lab}
+
+\subsection{Lab Report}
+After completing the activities in this lab you should create a zip folder with the following and then submit it to Sakai:
+
+\begin{itemize}
+	\item Your pre-lab assignment
+	\item Comented VHDL code
+	\item VHDL test benches for all activities
+	\item Waveforms for all activities
+	\item A discoussion on th
+\end{itemize}
