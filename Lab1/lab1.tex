@@ -232,7 +232,7 @@ Implement the hardware from the circuit in Figure \ref{fig:circuit1}. The inputs
 
 \subsubsection{7 Segment Display Decoder}
 
-The 7-segment display is comprised of 7 LEDs that are arranged in such a way that allows for the creation of the numbers 0-9 and a select few characters with some clever use. Figure \ref{fig:7seg} shows the block diagram and output table. Your task is to create a 3 input, 7 output decoder that will display a number from 0-6. To accomplish this task, you should program the switches SW(0) - SW(6) to make the first 7 displays show the numbers 0-6 when its switch is turned on.
+The 7-segment display is comprised of 7 LEDs that are arranged in such a way that allows for the creation of the numbers 0-9 and a select few characters with some clever use. Figure \ref{fig:7seg} shows the block diagram and output table. Your task is to create a 4 input, 7 output decoder that will display a number from 0-9 and the letters A-F. To accomplish this task, you should program the switches SW(0) - SW(3) to act as a 4-bit input to the decoder and output the result across all of the displays, HEX0 - HEX7.
 
 \begin{figure}[H]
 	\centering
@@ -243,9 +243,19 @@ The 7-segment display is comprised of 7 LEDs that are arranged in such a way tha
 
 {\bf Tips:} 
 \begin{itemize}
-  \item The eight 7 segment displays can be accessed with the 7-bit signal vectors HEX0\ldots HEX7. For example, to output to the first display (HEX0) you can either set each bit individually (HEX0(5) <= `1';) or set the whole vector with (HEX0 <= `1111111') which would display the number 8. 
-\item more to come...
+	\item You should create two entities, one labled part2 that contains the logic for the switch input and output to the displays and another labled bcd7seg that acts as a decoder for the display.
+	
+	\item The eight 7 segment displays can be accessed with the 7-bit signal vectors HEX0\ldots HEX7. For example, to output to the first display (HEX0) you can either set each bit individually (HEX0(5) <= `0';) or set the whole vector with (HEX0 <= `00000000') which would display the number 8. Keep in mind that the LED segments use inverted logic.
+	  
+	\item Figure \ref{fig:7segreference} shows how to correctly display all the required characters.
 \end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab1/figures/7segreference.png}
+	\caption{7 segment displays showing all combinations for 0-9 and A-F}
+	\label{fig:7segreference}
+\end{figure}
 
 \subsection{Lab Report}
 

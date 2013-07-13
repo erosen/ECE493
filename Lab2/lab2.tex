@@ -14,15 +14,57 @@ Before you begin this lab you should:
 \subsection{Lab Activities}
 
 \subsubsection{Latches}
-The following VHDL code implements the logic for a D-latch based off of the schematic in figure ??. 
+The following VHDL code implements the logic for a D-latch based off of the schematic in figure \ref{fig:dlatch}. 
 
-% code for figure
+\begin{lstlisting}
+-- A gated D latch
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY dlatch IS
+	PORT (	Clk, D	: IN	STD_LOGIC;
+			Q, Qbar	: OUT	STD_LOGIC);
+END dlatch;
+
+ARCHITECTURE rtl OF dlatch IS
+
+	SIGNAL D1, D2, Qa, Qb : STD_LOGIC; -- Intermediate signals
+	ATTRIBUTE keep: boolean; -- For waveform results
+	ATTRIBUTE keep of D1, D2, Qa, Qb : signal is true;
+	
+BEGIN
+	
+	D1 <= NOT (D AND CLK);
+	D2 <= NOT (D1 AND CLK);
+	Qa <= NOT (D1 AND Qb);
+	Qb <= NOT (D2 AND Qa);
+
+	Q <= Qa;
+	Qbar <=Qb;
+	
+END rtl;
+\end{lstlisting}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab2/figures/dlatch.png}
+	\caption{D-latch circuit and block diagram}
+	\label{fig:dlatch}
+\end{figure}
 
 Using this as a reference, design VHDL for an SR-latch with a clock input. Verify with waveforms that the circuit behaves the same as the truth table you created in the pre-lab.
 
 
 \subsubsection{Flip-Flop}
-Design VHDL code that implements the logic for a J-K flip-flop from figure ??. Verify with waveforms that the circuit behaves the same as the truth table you created in the pre-lab 
+Design VHDL code that implements the logic for a J-K flip-flop from figure \ref{fig:jkflipflop}. Verify with waveforms that the circuit behaves the same as the truth table you created in the pre-lab 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab2/figures/jkflipflop.png}
+	\caption{J-K fip-flop circuit}
+	\label{fig:jkflipflop}
+\end{figure}
 
 \subsubsection{Counters}
 In the pre-lab, you created a block diagram for an 8-bit counter using J-K flip flops. Using the same VHDL code you created for implementing the J-K flip-flop, implement an 8-bit counter that increments when you press KEY0 on the DE2-115 development board. Link the binary output of the flip-flops to the red LEDs and then convert the binary value into hexadecimal to be shown on the 7-segment displays. \emph{Hint: you should refer to your code for the 7-segment display driver designed in the previous lab}
@@ -35,5 +77,5 @@ After completing the activities in this lab you should create a zip folder with 
 	\item Comented VHDL code
 	\item VHDL test benches for all activities
 	\item Waveforms for all activities
-	\item A discoussion on th
+	\item A discoussion on the results of compilation including longest path delay, the total number of logic elements used, and issues you encountered while performing the lab
 \end{itemize}
