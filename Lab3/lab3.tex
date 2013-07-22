@@ -1,12 +1,14 @@
 \section{Lab 3 - Complex Addition Systems}
 
 \subsection{Introduction}
-From your pocket calculator to inside modern CPUs adders have long been used as more than just a simple way to sum numbers together. This lab will go into the logic structure of the adder as well as provide a method for converting the simple full adder in to an \emph{arithmetic logic unit} (ALU) capable of handling 12 instructions. 
+From your pocket calculator to inside modern CPUs adders have long been used as more than just a simple way to sum numbers together. This lab will go into the logic structure of the adder as well as provide a method for converting the simple full adder in to an \emph{arithmetic logic unit} (ALU) capable of handling 10 opperations. 
 
 \subsection{Pre-lab}
- Truth table for half adder, full adder
-Equation for a 4-bit ripple carry adder
- Block digram for a 4-bit ripple carry adder
+Before coming to the lab, please complete the following and upload to Sakai:
+\begin{itemize}
+	\item A truth table for a half adder and a full adder
+	\item The logic equation for a 4-bit ripple carry adder
+\end{itemize}
 
 \subsection{Lab Activities}
 
@@ -40,40 +42,47 @@ Now that you have a working 1-bit full adder, implement a 4-bit ripple carry add
 \end{figure}
 
 \subsubsection{Full Adder Based ALU}
+The block diagram in Figure \ref{fig:fulladderalu} is an example of how the regular 1-bit full adder can be manipulated to implement additional functionality. For this activity, you must build VHDL code that implements a 4-bit complex adder ALU, the list of instructions can be found in Table \ref{tab:adderaluop}.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=150mm]{Lab3/figures/fulladderalu.png}
+	\caption{Block diagram for a 4-bit ripple carry adder alu with 10 opperations}
+	\label{fig:fulladderalu}
+\end{figure}
 
-\begin{tabular}{ | c | c | c | c | }
- 	\hline                        
- 	 Ai & Bi & D0D1 & Result \\ \hline
- 	 Set to 0 & Set to 0 & 00 & 0 \\ \hline
- 	 Set to 0 &  Set to 0  & 1 & 1 \\ \hline
- 	 A &  Set to 0 & 0 & A \\ \hline
- 	 Set to 0& B  & 0  & B  \\ \hline
- 	 A & Set to 0 & 1 & A $+$ 1 \\ \hline
- 	 Set to 0 & B & 1 & B $+$ 1 \\ \hline
- 	 A & B & 0 & A $+$ B \\ \hline
- 	 A & B & 1 & A $-$ B \\ \hline
- 	 Set to invert & Set to 0 & 0 & $\overline{A}$ \\ \hline
- 	 Set to invert & Set to 0 & 1 & $-$A \\ \hline
- 	 Set to 0 & Set to invert & 0 &  $\overline{B}$ \\ \hline
- 	 Set to 0 & Set to invert & 1 & $-$B \\
- 	 \hline
-\end{tabular}
+This activity will be performed on the DE2-115 FPGA development board, you should set {\bf A} by connecting it to SW0 - SW3 while {\bf B} should be set from SW4 - SW7. D$_0$ should be set with SW8 and D$_1$ with SW9. Display {\bf A} in hexadecimal on HEX0, {\bf B} on HEX2, and the result {\bf S} on HEX4. If the result overflows display {\bf C$_4$} on LEDG0. If the result is negative turn on LEDR0 and if it is zero turn on LEDR1.
 
+\begin{table}[H]
+	\centering
+	\caption{List of opperations for the adder based ALU}
+	\begin{tabular}{ | c | c | c | c | }
+		\hline                        
+ 		\bf A$_i$ & \bf B$_i$ & \bf D$_0$ D$_1$ & \bf Result \\ \hline
+ 		Set to 0 & Set to 0 & 00 & 0 \\ \hline
+ 		Set to 0 &  Set to 0 &10 & 1 \\ \hline
+ 		A &  Set to 0 & 00 & A \\ \hline
+ 		Set to 0& B  & 00  & B  \\ \hline
+ 		A & Set to 0 & 10 & A $+$ 1 \\ \hline
+ 		Set to 0 & B & 10 & B $+$ 1 \\ \hline
+ 		A & B & 00 & A $+$ B \\ \hline
+ 		A & B & 10 & A $-$ B \\ \hline
+ 		Set to invert & Set to 0 & 01 & $\overline{A}$ \\ \hline
+ 		Set to invert & Set to 0 & 11 & $-$A \\ 
+ 		\hline
+	\end{tabular}
+	\label{tab:adderaluop}
+\end{table}
+
+When you finsih building the VHDL upload your code to the FPGA board. Test and verify all ten opperations and take a picture of each result (make a table with that includes the values for {\bf A, B, S, C$_4$, Neg, and Zero}.
 \subsection{Lab Report}
+After completing the activities in this lab you should create a zip folder with the following and then submit it to Sakai:
 
-%HEX0 - HEX1 - Set by SW0-7
-
-%HEX2- HEX3 -  Set by SW8-15
-
-%FF + FF = 1FE
-
-%HEX4 - HEX5 = SUM
-
-%LEDG = Overflow/carry_out
-
-%carry_in 
-
-
-%CLOCK -  KEY[0]
+\begin{itemize}
+	\item Commented VHDL code
+	\item VHDL test benches for the half adder and full adder activities
+	\item Waveforms for the half adder and full adder activities
+	\item Pictures of the results from the ALU activity 
+	\item A discussion on the results of compilation including longest path delay, the total number of logic elements used, and issues you encountered while performing the lab
+\end{itemize}
 
