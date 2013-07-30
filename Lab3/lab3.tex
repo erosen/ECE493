@@ -1,7 +1,7 @@
 \section{Lab 3 - Complex Addition Systems}
 
 \subsection{Introduction}
-From your pocket calculator to inside modern CPUs adders have long been used as more than just a simple way to sum numbers together. This lab will go into the logic structure of the adder as well as provide a method for converting the simple full adder in to an \emph{arithmetic logic unit} (ALU) capable of handling 10 operations. 
+From your pocket calculator to inside modern CPUs adders have long been used as more than just a simple way to sum numbers together. This lab will go into the logic structure of the adder as well as provide a method for converting the simple full adder in to an \emph{arithmetic logic unit} (ALU) capable of handling 10 operations.
 
 \subsection{Pre-lab}
 Before coming to the lab, please complete the following and upload to Sakai:
@@ -47,11 +47,11 @@ The block diagram in Figure \ref{fig:fulladderalu} is an example of how the regu
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=150mm]{Lab3/figures/fulladderalu.png}
-	\caption{Block diagram for a 4-bit ripple carry adder alu with 10 operations}
+	\caption{Block diagram for a 4-bit ripple carry adder ALU with 10 operations}
 	\label{fig:fulladderalu}
 \end{figure}
 
-This activity will be performed on the DE2-115 FPGA development board, you should set {\bf A} by connecting it to SW0 - SW3 while {\bf B} should be set from SW4 - SW7. D$_0$ should be set with SW8 and D$_1$ with SW9. Display {\bf A} in hexadecimal on HEX0, {\bf B} on HEX2, and the result {\bf S} on HEX4. If the result overflows display {\bf C$_4$} on LEDG0. If the result is negative turn on LEDR0 and if it is zero turn on LEDR1.
+After writing and testing your VHDL code, upload it on the DE2-115 FPGA Development board. Connect the inputs {\bf A0-A3} to SW0 - SW3 and the inputs {\bf B0-B3} to SW4 - SW7. Also connect {\bf D$_0$} to SW8 and {\bf D$_1$} to SW9. Display inputs {\bf A} and {\bf B} in hexadecimal on HEX0 and HEX2, respectively and the output {\bf S} on HEX4. If the result over-flows display {\bf C$_4$} on LEDG0. If the result is negative turn on LEDR0 and if it is zero turn on LEDR1. Test and verify all ten operations and take a picture of each result (make a table that includes the values for {\bf A}, {\bf B}, {\bf S}, {\bf C$_4$}, {\bf Neg}, and {\bf Zero}.
 
 \begin{table}[H]
 	\centering
@@ -79,10 +79,10 @@ When you finsih building the VHDL upload your code to the FPGA board. Test and v
 After completing the activities in this lab you should create a zip folder with the following and then submit it to Sakai:
 
 \begin{itemize}
-	\item Commented VHDL code
-	\item VHDL test benches for the half adder and full adder activities
-	\item Waveforms for the half adder and full adder activities
-	\item Pictures of the results from the ALU activity 
-	\item A discussion on the results of compilation including longest path delay, the total number of logic elements used, and issues you encountered while performing the lab
+	\item Commented VHDL code.
+	\item VHDL test benches for the half adder and full adder activities.
+	\item Waveforms for the half adder and full adder activities.
+	\item Pictures of the results from the ALU activity.
+	\item A discussion on the results of compilation including longest path delay, the total number of logic elements used, and issues you encountered while performing the lab.
 \end{itemize}
 

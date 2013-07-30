@@ -4,6 +4,7 @@
 This lab will introduce you to the Altera DE2-115 FPGA Development Board. The DE2-115 contains all of the hardware necessary to prototype and create various hardware configurations on the Altera Cyclone IV FPGA chip that will be used throughout the course of this lab. By completing this lab, you will have an understanding of all the hardware contained on the FPGA development board, along with an understanding of how to connect peripherals to the development board. Lastly, this lab will go over the standard template for designing hardware in the VHDL programming language. All this will be accomplished by following the Quartus II introductory packet along with the following activities.
 
 \subsection{The DE2-115 FPGA Development Board}
+An overview of the DE2-115 FPGA Development Board can be found in Figure \ref{fig:DE2-115}. Take note of the layout of the board. It is expected that by the end of this course you should be able to point out and explain the various clocks, ports, configuration devices, and peripheral ports on the development board.
 
 \begin{figure}[H]
 	\centering
@@ -11,6 +12,8 @@ This lab will introduce you to the Altera DE2-115 FPGA Development Board. The DE
 	\caption{The DE2-115 FPGA Development Board}
 	\label{fig:DE2-115}
 \end{figure}
+
+Figure \ref{fig:DE2Block} is an overview of how all the components of the board are connected to the FPGA device.
 
 \begin{figure}[H]
 	\centering
@@ -24,16 +27,20 @@ This lab will introduce you to the Altera DE2-115 FPGA Development Board. The DE
 Before attempting this lab, you should complete the following:
 
 \begin{itemize}
-	\item Download and install the \emph{Quartus II 13.0 Web Edition Software} from the Altera website to your personal computer
-	\item Download and install the \emph{Altera University Installer Software} located at http://www.altera.com/education/univ/software/upds/unv-upds.html
-	\item Download and read the following documents from the Sakai Resources pags;  \emph{DE2-115 User Manual}, \emph{Quartus II Introduction}
+	\item Download and install the \emph{Quartus II 13.0 Web Edition Software} located at:
+	 \\ \url{http://www.altera.com/products/software/quartus-ii/web-edition/qts-we-index.html}
+
+	\item Download and install the \emph{Altera University Installer Software 13.0} located at:
+	 \\ \url{http://www.altera.com/education/univ/software/upds/unv-upds.html}
+
+	\item Download and read the following documents from the Sakai Resources pags;  \emph{DE2-115 User Manual}, \emph{Quartus II Introduction}.
 \end{itemize}
  
 \subsection{Working with Quartus II}
 
 \subsubsection{Creating a New Project}
 \begin{enumerate}
-	\item In order to begin working on your first FPGA project, you must open the program Altera Quartus II. To begin a new project goto  {\bf File $\rightarrow$ New Project Wizard} as shown in figure \ref{fig:step1}
+	\item In order to begin working on your first FPGA project, you must open the program Altera Quartus II. To begin a new project go to  {\bf File $\rightarrow$ New Project Wizard} as shown in Figure \ref{fig:step1}.
 
 	\begin{figure}[H]
 		\centering
@@ -42,21 +49,21 @@ Before attempting this lab, you should complete the following:
 		\label{fig:step1}
 	\end{figure}
 
-	\item When the \emph{New Project Wizard} window opens click {\bf NEXT}
+	\item When the \emph{New Project Wizard} window opens click {\bf NEXT}.
 
-	\item Create a folder in your Z-drive called \emph{FPGA Lab}
+	\item Create a folder in your Z-drive called \emph{FPGA Lab}.
 
-	\item Create a folder in FPGA Lab called \emph{lab1}
+	\item Create a folder in FPGA Lab called \emph{lab1}.
 
-	\item Set the working directory to lab1
+	\item Set the working directory to lab1.
 
-	\item Name the project \emph{lab1}
+	\item Name the project \emph{lab1}.
 
-	\item Click {\bf NEXT} to proceed
+	\item Click {\bf NEXT} to proceed.
 
-	\item Skip this step, click  {\bf NEXT} to proceed
+	\item Skip this step, click  {\bf NEXT} to proceed.
 
-	\item Under Device Family select \emph{Cyclone IV E}, set the package to \emph{FBGA}, pin count to \emph{780}, and speed grade to \emph{7}. In the Available devices list, look for and select \emph{EP4CE115F29C7} as shown in figure \ref{fig:step2}.
+	\item Under Device Family select \emph{Cyclone IV E}, set the package to \emph{FBGA}, pin count to \emph{780}, and speed grade to \emph{7}. In the Available devices list, look for and select \emph{EP4CE115F29C7} as shown in Figure \ref{fig:step2}.
 	
 
 	\begin{figure}[H]
@@ -66,14 +73,14 @@ Before attempting this lab, you should complete the following:
 		\label{fig:step2}
 	\end{figure}
 
-	\item Click {\bf FINISH} to begin your new project
+	\item Click {\bf FINISH} to begin your new project.
 
 \end{enumerate}
 
 \subsubsection{Creating an Empty File}
 \begin{enumerate}
 
-	\item Goto {\bf File $\rightarrow$ New $\rightarrow$ VHDL File $\rightarrow$ OK } as shown in figure \ref{fig:newfile}
+	\item Go to {\bf File $\rightarrow$ New $\rightarrow$ VHDL File $\rightarrow$ OK } as shown in Figure \ref{fig:newfile}.
 
 	\begin{figure}[H]
 		\centering
@@ -82,7 +89,7 @@ Before attempting this lab, you should complete the following:
 		\label{fig:newfile}
 	\end{figure}
 
-	\item Save this new file by going to {\bf File $\rightarrow$ Save As $\rightarrow$ \emph{lab1.vhd} $\rightarrow$ SAVE} as shown in figure \ref{fig:saveas}
+	\item Save this new file by going to {\bf File $\rightarrow$ Save As $\rightarrow$ \emph{lab1.vhd} $\rightarrow$ SAVE} as shown in Figure \ref{fig:saveas}.
 
 	\begin{figure}[H]
 		\centering
@@ -95,7 +102,7 @@ Before attempting this lab, you should complete the following:
 
 \subsubsection{Writing VHDL Code}
 
-The following code block shows how to interact with the switches and LEDs on the DE2-115. Notice how the program begins with importing the ieee library which contains all of the basic logic primitives as established within the IEEE standard 1164. When working in industry it is common for large companies to create their own libraries as well. Every VHDL file should contain at least one entity (module) that is the same as the name of the file. An entity contains information about the structure of the module such as how many inputs/outputs (I/O) and what type of logic to expect at the I/O. Finally we define the entity in an architecture block, this section does the work on the hardware. As can be seen, this code is setting the red LEDs as defined in the array to the accompanying switches on the board. Take note on the use of comments throughout the code, comments begin with two dashes (--) and should always be used to describe what you are trying to accomplish, this way someone else who reads your code will understand it easily and your code will look more professional. 
+The following code block shows how to interact with the switches and LEDs on the DE2-115. Notice how the program begins with importing the ieee library which contains all of the basic logic primitives as established within the IEEE standard 1164. When working in industry it is common for large companies to create their own libraries as well. Every VHDL file should contain at least one entity (module) that is the same as the name of the file. An entity contains information about the structure of the module such as how many inputs/outputs (I/O) and what type of logic to expect at the I/O.Once the port structure for the entity is defined, its logical behavior is described within an architecture block. As can be seen, the code below is setting the red LEDs as defined in the array to the accompanying switches on the board. Take note on the use of comments throughout the code, comments begin with two dashes (--) and should always be used to describe what you are trying to accomplish, this way someone else who reads your code will understand it easily and your code will look more professional. 
 
 \begin{lstlisting}
 -- Import logic primitives
@@ -116,13 +123,13 @@ END Behavior;
 \end{lstlisting}
 
 \subsubsection{Setting Pin Assignments}
-The Cyclone IV chip on the DE2-115 contains 780 pins. The majoprity of these pins have copper traces to the hardware the control on the development board. As a result, Altera has provided a file that contains all of the pin assignments so that you can interface directly with the pins in your VHDL code. To set the pin assignments:
+The Cyclone IV chip on the DE2-115 contains 780 pins. Most of the pins  have been predetermined through their routing on the PCB to directly control all of the interfaces on the board. As a result, Altera has provided a file that contains all of the pin assignments so that you can interact directly with the hardware on the board through your VHDL code. To set the pin assignments:
 
  \begin{enumerate}  
  
-	\item Goto {\bf Assignments $\rightarrow$  Import Assignments $\rightarrow$  Select \emph DE2-115.qsf} as shown in figure \ref{fig:importassign}.This file can be dowloaded from the Altera website
+	\item Go to {\bf Assignments $\rightarrow$  Import Assignments $\rightarrow$  Select \emph DE2-115.qsf} as shown in Figure \ref{fig:importassign}. This file should be downloaded from Sakai under resources. 
 	
-	\item Then click {\bf ADVANCED $\rightarrow$ check Global Assignments $\rightarrow$ Ok} as shown in figure \ref{fig:advancedimport}
+	\item Then click {\bf ADVANCED $\rightarrow$ check Global Assignments $\rightarrow$ Ok} as shown in Figure \ref{fig:advancedimport}.
 
 \end{enumerate}
 
@@ -144,11 +151,11 @@ The Cyclone IV chip on the DE2-115 contains 780 pins. The majoprity of these pin
 
 \begin{enumerate}
 
-	\item To begin compiling your hardware, {\bf Processing $\rightarrow$ Start Compilation} or you may press \emph{Ctrl + L} on your keyboard
+	\item To begin compiling your hardware, go to {\bf Processing $\rightarrow$ Start Compilation} or you may press \emph{Ctrl + L} on your keyboard.
 
 \end{enumerate}
 
-If the project compiles successfully, you may proceed to uploading the hardware. Otherwise if you have any errors you should debug your code. It is helpful to note that the first error should be solved first which will make it easier to solve the other errors. A succefull compilation will look like figure \ref{fig:compileresuts}.
+If the project compiles successfully, you may proceed to uploading the hardware. Otherwise if you have any errors you should debug your code. It is helpful to note that the first error should be solved first which will make it easier to solve the other errors. A successful compilation will look like Figure \ref{fig:compileresuts}.
 
 \begin{figure}[H]
 	\centering
@@ -159,11 +166,12 @@ If the project compiles successfully, you may proceed to uploading the hardware.
 
 \subsubsection{Testing Hardware with Waveforms}
 
-All hardware implementations should be tested for correctness before uploading to the FPGA device. To accomplish this, please follow the tutorial titled \emph{Quartus\_II\_Simulation.pdf} listed under Sakai resources.
+All hardware
+implementations should be tested for correctness before the VHDL code is uploaded to the FPGA device. To accomplish this, please follow the tutorial titled \emph{Quartus\_II\_Simulation.pdf} listed under Sakai resources.
 
 \subsubsection{Uploading Hardware to Device}
 
-Once the hardware has compiled successfully, goto {\bf Tools $\rightarrow$ Programmer} to open the hardware upload options. There are two typical modes for uploading hardware and it is important to understand when to use them. This can be seen in figure \ref{fig:uploadmethod}.
+Once the hardware has compiled successfully, go to {\bf Tools $\rightarrow$ Programmer} to open the hardware upload options. There are two typical modes for uploading hardware and it is important to understand when to use them. This can be seen in Figure \ref{fig:uploadmethod}.
 
 
 \begin{figure}[H]
@@ -179,13 +187,13 @@ Once the hardware has compiled successfully, goto {\bf Tools $\rightarrow$ Progr
 
 	\begin{itemize}
 	
-		\item This method loads the hardware directly to the FPGA chip
+		\item This method loads the VHDL code directly to the FPGA chip.
 		
-		\item The FPGA is unable to save its current state so if the power is turned off the programmed hardware will disappear
+		\item The FPGA is unable to save its current state so if the power is turned off the programmed hardware will disappear.
 		
-		\item To program the FPGA with this method all you need to do is connect the USB cable to the development board and ensure that under {\bf Hardware Setup} that USB-Blaster is selected. Then you must goto {\bf Add Files} and add your compiled \emph{lab1.sof} file
+		\item To program the FPGA with this method all you need to do is connect the USB cable to the development board and ensure that under {\bf Hardware Setup} that USB-Blaster is selected. Then you must go to {\bf Add Files} and add your compiled \emph{lab1.sof} file.
 		
-		\item Press {\bf START} to upload your hardware, in a few moments you should see your development board behaving as instructed by your code
+		\item Press {\bf START} to upload your hardware, in a few moments you should see your development board behaving as instructed by your code.
 		
 	\end{itemize}
 
@@ -194,7 +202,7 @@ Once the hardware has compiled successfully, goto {\bf Tools $\rightarrow$ Progr
 	\begin{itemize}
 		\item This method loads the hardware on to the on-board configuration device. What this means is that the hardware description is saved into memory and is loaded onto the FPGA chip whenever the board is powered on. This method is more desirable because it allows the FPGA to work without being connected to the computer and only to an external power source.
 		
-		\item Before beginning this method you should first check that under {\bf Assignments $\rightarrow$ Device $\rightarrow$ Device and Pin Options} are configured in the same way as figure \ref{fig:activeserialconfig}, if not you must set the configuration scheme to \emph{Active Serial} and also set  the configuration device to \emph{EPCS64}. If this was not set you must recompile your hardware.
+		\item Before beginning this method you should first check that under {\bf Assignments $\rightarrow$ Device $\rightarrow$ Device and Pin Options} are configured in the same way as shown in Figure \ref{fig:activeserialconfig}. If not, you must set the configuration scheme to \emph{Active Serial} and also set the configuration device to \emph{EPCS64}. If this was not set you must recompile your hardware.
 
 		\begin{figure}[H]
 			\centering
@@ -205,13 +213,13 @@ Once the hardware has compiled successfully, goto {\bf Tools $\rightarrow$ Progr
 
 		\item Next once again ensure that the hardware is set to \emph{USB-Blaster} and that the mode is set to \emph{Active Serial}
 		
-		\item Click on {\bf Add Files}, and select \emph{lab1.pof}
+		\item Click on {\bf Add Files}, and select \emph{lab1.pof}.
 		
-		\item Ensure that the development board is switched to \emph{PROG}
+		\item Ensure that the development board is switched to \emph{PROG}.
 		
-		\item Click {\bf START} to begin programming. This method takes slightly longer
+		\item Click {\bf START} to begin programming. This method takes slightly longer.
 		
-		\item Switch the board back into the \emph{RUN} position and verify that your logic is behaving properly
+		\item Switch the board back into the \emph{RUN} position and verify that your logic is behaving properly.
 		
 	\end{itemize}
 
