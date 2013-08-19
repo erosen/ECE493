@@ -1,22 +1,13 @@
-\section{Lab 5 - A Simple Computer}
+\section{Lab 5 - A Simple Processor}
 
 \subsection{Introduction}
-In this lab you will create a simple computer that can compute 8 operations. Each instruction will be 18 bits set up in the following way: 
-
-\begin{center}
-	\begin{tabular}{| c | c | c | c |}
-		\hline
-		{\bf OPCODE} & {\bf Destination Address} & {\bf Source Address 1} & {\bf Source Address 2 / Shift Amount} \\ \hline
-		3 bits & 5 bits & 5 bits & 5 bits \\ 
-		\hline
-	\end{tabular}
-\end{center}
+In this lab you will create a simple processor that can compute 8 operations. 
 	
 \subsection{Pre-lab}
 
 Before coming to the lab, please complete the following and upload to Sakai:
 \begin{itemize}
-	\item Create a system diagram that shows how all of the modules in the lab are connected to each other (ALU, Control, Multiplexer, FLASH, and Display). 
+	\item Create a system diagram that shows how all of the modules in the lab are connected to each other (Control, ALU, Program Counter,  FLASH, and Display). 
 	\item Read through the datasheet for working with the FLASH memory chip on the FPGA board. This can be found under Sakai Resources.
 \end{itemize}
 
@@ -27,7 +18,7 @@ Instructions are fed to the CPU controller as an 18 bit instruction IR, the form
 
 \begin{table}[H]
 	\caption{18 bit instruction format}
-	\label{tab:instuct}
+	\label{tab:instruct}
 	\begin{center}
 		\begin{tabular}{| c | c | c | c |}
 			\hline
@@ -38,12 +29,17 @@ Instructions are fed to the CPU controller as an 18 bit instruction IR, the form
 	\end{center}
 \end{table}
 
-The Control module should take apart the instruction IR and break it down into signals to be used by the other modules. It is best to think of Control as a "Top" level state machine for the entire computer. The computer should have the following states IDLE, DECODE, and EXECUTE.
+The Control module should take apart the instruction IR and break it down into signals to be used by the other modules. It is best to think of Control as a "Top" level state machine for the entire processor. The processor should have the following states FETCH, DECODE, EXECUTE, MEMORY\_WRITE. \\ 
 
-The device should initiate in the IDLE state by sending an active low RESET signal in your test bench. If RESET is HIGH, take in the instruction IR and proceed to the DECODE state.
+The device should initiate in the FETCH state by sending an active low RESET signal in your test bench. If RESET is HIGH, take in the instruction IR and proceed to the DECODE state. \\
 
-If the device is in the DECODE state, you should break down the instruction IR into the various signals required for the modules ALU and FLASH controller. 
-	
+If the device is in the DECODE state, you should break down the instruction IR into the various signals required for the modules ALU and FLASH controller, you should also read in the data stored from Source Address 1 and Source Address 2 and store it into a register. Once this is completed,  proceed to the EXECUTE state. \\
+
+In the EXECUTE state, you should preform the ALU operation as determined from the processor instruction and store the result into a register. Once completed, Increment the Program Counter and move to the next state MEMORY\_WRITE. \\
+
+After the instruction is completed, take the result and write it into the Destination Address on the FLASH memory. Proceed back to FETCH and begin working on the next instruction. \\
+
+Each state should transition on the positive edge of a clock pulse which will come from pressing KEY0.
 
 \subsubsection{Design an ALU}
 Using the operations listed in Table \ref{tab:aluop}, create an ALU in VHDL that takes in two 8 bit values and returns the result to the processor. Required signals: {\bf A}, {\bf B}, {\bf opcode}, and {\bf result}.
@@ -67,6 +63,21 @@ Using the operations listed in Table \ref{tab:aluop}, create an ALU in VHDL that
     		\end{tabular}
 	\end{center}
 \end{table}
+
+\subsubsection{Program Counter}
+
+Design a simple program counter that keeps track of the number of operations completed and increments by one at the end of MEMORY\_WRITE. Store the result to a register to be shown through the display driver.
+
+\subsubsection{Initiate the FLASH Memory}
+
+Using the DE2-115 Control Panel, initiate arbitrary values into the FLASH memory and keep a record of this data to compare your results. Figure \ref{fig:controlpanel} shows the option screen for loading values. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab5/figures/controlpanel.png}
+	\caption{DE2-115 Control Panel - Accessing SDRAM/FLASH/EEPROM Menu}
+	\label{fig:controlpanel}
+\end{figure}
 
 \subsubsection{FLASH Memory Controller}
 The Altera DE2-115 FPGA Development Board contains an 8 MB FLASH memory chip. For this activity you will implement a FLASH memory controller that can read and write to the first 256 bits of the chip. A list of pins used for interacting with the chip can be found in Table \ref{tab:flash}. Notice that addresses are normally 23 bits long however for this exercise you should set FL\_ADDR[19] to FL\_ADDR[22] to the source address and set the remaining bits to zero. 
@@ -93,8 +104,18 @@ You should pay careful attention to how data is read and written to the chip. Th
 	\end{center}
 \end{table}
 
-\subsubsection{Create a VGA Driver}
-Display the output onto the screen
+\subsubsection{Results Display}
+As has been done in previous labs, create a display driver for showing information relative the the current state.
+
+\begin{itemize}
+	\item HEX7 and HEX6 should display the value stored in Source Address 1. 
+	\item HEX5 and HEX4 should display the value stored in Source Address 2.
+	\item HEX3 and HEX2 should display the result of the operation.
+	\item HEX0 should display the Program Counter
+	\item LEDG3 through LEDG0 should display the current state; FETCH, DECODE, EXECUTE, and MEMORY\_WRITE respectively. 
+	\item The display should reset to a dashes if the data is not available yet.
+\end{itemize}
+
 
 \subsection{Lab Report}
 After completing the activities in this lab you should create a zip folder with the following and then submit it to Sakai:
@@ -103,5 +124,6 @@ After completing the activities in this lab you should create a zip folder with 
 	\item Commented VHDL code.
 	\item VHDL test bench with at least one instruction for all 8 operations.
 	\item Photos of results from the test bench
+	\item This processor is single-cycle which means it can only run one instruction at a time, how would you make the processor run in parallel? How many instructions can theoretically be worked on at the same time? Provide a diagram along with a written response.
 	\item A discussion on the results of compilation including longest path delay, the total number of logic elements used, and issues you encountered while performing the lab.
 \end{itemize}
