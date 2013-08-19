@@ -3,6 +3,14 @@
 \subsection{Introduction}
 A finite-state machine (FSM) is a system that can be in only one state at a time; the state it is in at any given time is called the current state. It can change from one state to another when initiated by a triggering event or condition; this is called a transition. A particular FSM is defined by a list of its states, and the triggering condition for each transition. This lab will examine a simple FSM to give the general idea of how they work and build upon it to create a system modeled off of a real world system, a vending machine.
 
+\subsection{Pre-lab}
+
+Before coming to the lab, please complete the following and upload to Sakai:
+\begin{itemize}
+	\item By examining the code in Listing \ref{code:fsm} write out its state machine transition graph.
+\end{itemize}
+
+
 \subsection{Lab Activities}
 
 \subsubsection{FSM}
@@ -18,7 +26,7 @@ Given the state machine transition graph in Figure \ref{fig:fsm}, design VHDL fo
 
 You may find the code below to be helpful in completing this activity. 
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Sample code for a Finite State Machine, label=code:fsm]
 -- User-Encoded State Machine
 library ieee;
 use ieee.std_logic_1164.all;
