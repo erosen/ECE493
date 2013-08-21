@@ -4,7 +4,7 @@
 This lab will introduce you to the Altera DE2-115 FPGA Development Board. The DE2-115 contains all of the hardware necessary to prototype and create various hardware configurations on the Altera Cyclone IV FPGA chip that will be used throughout the course of this lab. By completing this lab, you will have an understanding of all the hardware contained on the FPGA development board, along with an understanding of how to connect peripherals to the development board. Lastly, this lab will go over the standard template for designing hardware in the VHDL programming language. All this will be accomplished by following the Quartus II introductory packet along with the following activities.
 
 \subsection{The DE2-115 FPGA Development Board}
-An overview of the DE2-115 FPGA Development Board can be found in Figure \ref{fig:DE2-115}. Take note of the layout of the board. It is expected that by the end of this course you should be able to point out and explain the various clocks, ports, configuration devices, and peripheral ports on the development board.
+An overview of the DE2-115 FPGA Development Board can be found in Figure \ref{fig:DE2-115}. Take note of the layout of the board. It is expected that by the end of this course you should be able to point out and explain the various clocks, configuration devices, and peripheral ports on the development board.
 
 \begin{figure}[H]
 	\centering
@@ -55,7 +55,7 @@ Before attempting this lab, you should complete the following:
 
 	\item Create a folder in FPGA Lab called \emph{lab1}.
 
-	\item Set the working directory to lab1.
+	\item Set the working directory to \emph{lab1}.
 
 	\item Name the project \emph{lab1}.
 
@@ -102,7 +102,7 @@ Before attempting this lab, you should complete the following:
 
 \subsubsection{Writing VHDL Code}
 
-The following code block shows how to interact with the switches and LEDs on the DE2-115. Notice how the program begins with importing the ieee library which contains all of the basic logic primitives as established within the IEEE standard 1164. When working in industry it is common for large companies to create their own libraries as well. Every VHDL file should contain at least one entity (module) that is the same as the name of the file. An entity contains information about the structure of the module such as how many inputs/outputs (I/O) and what type of logic to expect at the I/O.Once the port structure for the entity is defined, its logical behavior is described within an architecture block. As can be seen, the code below is setting the red LEDs as defined in the array to the accompanying switches on the board. Take note on the use of comments throughout the code, comments begin with two dashes (--) and should always be used to describe what you are trying to accomplish, this way someone else who reads your code will understand it easily and your code will look more professional. 
+The following code block shows how to interact with the switches and LEDs on the DE2-115. Notice how the program begins with importing the ieee library which contains all of the basic logic primitives as established within the IEEE standard 1164. When working in industry it is common for large companies to create their own libraries as well. Every VHDL file should contain at least one entity (module) that is the same as the name of the file. An entity contains information about the structure of the module such as how many inputs/outputs (I/O) and what type of logic to expect on the I/O.Once the port structure for the entity is defined, its logical behavior is described within an architecture block. As can be seen, the code below is setting the red LEDs as defined in the array to the accompanying switches on the board. Take note on the use of comments throughout the code, comments begin with two dashes (--) and should always be used to describe what you are trying to accomplish, this way someone else who reads your code will understand it easily and your code will look more professional. 
 
 \begin{lstlisting}
 -- Import logic primitives
@@ -127,7 +127,7 @@ The Cyclone IV chip on the DE2-115 contains 780 pins. Most of the pins  have bee
 
  \begin{enumerate}  
  
-	\item Go to {\bf Assignments $\rightarrow$  Import Assignments $\rightarrow$  Select \emph DE2-115.qsf} as shown in Figure \ref{fig:importassign}. This file should be downloaded from Sakai under resources. 
+	\item Go to {\bf Assignments $\rightarrow$  Import Assignments $\rightarrow$  Select \emph{DE2-115.qsf}} as shown in Figure \ref{fig:importassign}. This file should be downloaded from Sakai under resources. 
 	
 	\item Then click {\bf ADVANCED $\rightarrow$ check Global Assignments $\rightarrow$ Ok} as shown in Figure \ref{fig:advancedimport}.
 
@@ -151,7 +151,7 @@ The Cyclone IV chip on the DE2-115 contains 780 pins. Most of the pins  have bee
 
 \begin{enumerate}
 
-	\item To begin compiling your hardware, go to {\bf Processing $\rightarrow$ Start Compilation} or you may press \emph{Ctrl + L} on your keyboard.
+	\item To begin compiling your hardware, go to {\bf Processing $\rightarrow$ Start Compilation} or you may press {\bf \emph{Ctrl + L}} on your keyboard.
 
 \end{enumerate}
 
@@ -240,7 +240,7 @@ Implement the hardware from the circuit in Figure \ref{fig:circuit1}. The inputs
 
 \subsubsection{7 Segment Display Decoder}
 
-The 7-segment display is comprised of 7 LEDs that are arranged in such a way that allows for the creation of the numbers 0-9 and a select few characters with some clever use. Figure \ref{fig:7seg} shows the block diagram and output table. Your task is to create a 4 input, 7 output decoder that will display a number from 0-9 and the letters A-F. To accomplish this task, you should program the switches SW(0) - SW(3) to act as a 4-bit input to the decoder and output the result across all of the displays, HEX0 - HEX7.
+The 7-segment display is comprised of 7 LEDs that are arranged in such a way that allows for the creation of the numbers 0-9 and a select few characters with some clever use. Figure \ref{fig:7seg} shows the block diagram and output table. Your task is to create a 4 input, 7 output decoder that will display a number from 0-9 and the letters A-F. To accomplish this task, you should program the switches SW(0) - SW(3) to act as a 4-bit input to the decoder and output the result across all of the displays, HEX7 - HEX0.
 
 \begin{figure}[H]
 	\centering
@@ -253,7 +253,7 @@ The 7-segment display is comprised of 7 LEDs that are arranged in such a way tha
 \begin{itemize}
 	\item You should create two entities, one labled part2 that contains the logic for the switch input and output to the displays and another labled bcd7seg that acts as a decoder for the display.
 	
-	\item The eight 7 segment displays can be accessed with the 7-bit signal vectors HEX0\ldots HEX7. For example, to output to the first display (HEX0) you can either set each bit individually (HEX0(5) <= `0';) or set the whole vector with (HEX0 <= `00000000') which would display the number 8. Keep in mind that the LED segments use inverted logic.
+	\item The eight 7 segment displays can be accessed with the 7-bit signal vectors HEX7\ldots HEX0. For example, to output to the first display (HEX0) you can either set each bit individually (HEX0(5) <= `0';) or set the whole vector with (HEX0 <= `00000000') which would display the number 8. Keep in mind that the LED segments use inverted logic.
 	  
 	\item Figure \ref{fig:7segreference} shows how to correctly display all the required characters.
 \end{itemize}

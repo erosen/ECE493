@@ -29,15 +29,15 @@ Instructions are fed to the CPU controller as an 18 bit instruction IR, the form
 	\end{center}
 \end{table}
 
-The Control module should take apart the instruction IR and break it down into signals to be used by the other modules. It is best to think of Control as a "Top" level state machine for the entire processor. The processor should have the following states FETCH, DECODE, EXECUTE, MEMORY\_WRITE. \\ 
+The Control module should take apart the instruction IR and break it down into signals to be used by the other modules. It is best to think of Control as a "Top" level state machine for the entire processor. The processor should have the following states \emph{FETCH}, \emph{DECODE}, \emph{EXECUTE}, \emph{MEMORY\_WRITE}. \\ 
 
-The device should initiate in the FETCH state by sending an active low RESET signal in your test bench. If RESET is HIGH, take in the instruction IR and proceed to the DECODE state. \\
+The device should initiate in the \emph{FETCH} state by sending an active low RESET signal in your test bench. If RESET is HIGH, take in the instruction IR and proceed to the \emph{DECODE} state. \\
 
-If the device is in the DECODE state, you should break down the instruction IR into the various signals required for the modules ALU and FLASH controller, you should also read in the data stored from Source Address 1 and Source Address 2 and store it into a register. Once this is completed,  proceed to the EXECUTE state. \\
+If the device is in the \emph{DECODE} state, you should break down the instruction IR into the various signals required for the modules ALU and FLASH controller, you should also read in the data stored from Source Address 1 and Source Address 2 and store it into a register. Once this is completed,  proceed to the \emph{EXECUTE} state. \\
 
-In the EXECUTE state, you should preform the ALU operation as determined from the processor instruction and store the result into a register. Once completed, Increment the Program Counter and move to the next state MEMORY\_WRITE. \\
+In the \emph{EXECUTE} state, you should preform the ALU operation as determined from the processor instruction and store the result into a register. Once completed, Increment the Program Counter and move to the next state \emph{MEMORY\_WRITE}. \\
 
-After the instruction is completed, take the result and write it into the Destination Address on the FLASH memory. Proceed back to FETCH and begin working on the next instruction. \\
+After the instruction is completed, take the result and write it into the Destination Address on the FLASH memory. Proceed back to \emph{FETCH} and begin working on the next instruction. \\
 
 Each state should transition on the positive edge of a clock pulse which will come from pressing KEY0.
 
