@@ -1,19 +1,30 @@
 \section{Lab 5 - A Simple Processor}
 
 \subsection{Introduction}
-In this lab you will create a simple processor that can compute 8 operations. 
+In this lab you will create a simple processor that can compute 8 operations. Figure \ref{fig:block} shows the components of a simple processor. The processor consists of an ALU, a FLASH memory, a control unit, a program counter (PC), and a display.  
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm]{Lab5/figures/block.png}
+	\caption{Block overview of processor}
+	\label{fig:block}
+\end{figure} 
+
 	
 \subsection{Pre-lab}
 
 Before coming to the lab, please complete the following and upload to Sakai:
 \begin{itemize}
-	\item Create a system diagram that shows how all of the modules in the lab are connected to each other (Control, ALU, Program Counter,  FLASH, and Display). 
+	\item Read through the  lab handout (specially Section \ref{sec:control}) and construct a top level finite state machine transition graph for the processor. Note that the different states are already defined in Section \ref{sec:control}.
+
 	\item Read through the datasheet for working with the FLASH memory chip on the FPGA board. This can be found under Sakai Resources.
 \end{itemize}
 
 \subsection{Lab Activities}
 
+
 \subsubsection{CPU Controller}
+\label{sec:control}
 Instructions are fed to the CPU controller as an 18 bit instruction IR, the format of an instruction can be seen in Table \ref{tab:instruct}. 
 
 \begin{table}[H]
@@ -29,7 +40,7 @@ Instructions are fed to the CPU controller as an 18 bit instruction IR, the form
 	\end{center}
 \end{table}
 
-The Control module should take apart the instruction IR and break it down into signals to be used by the other modules. It is best to think of Control as a "Top" level state machine for the entire processor. The processor should have the following states \emph{FETCH}, \emph{DECODE}, \emph{EXECUTE}, \emph{MEMORY\_WRITE}. \\ 
+The Control module should take apart the instruction IR and break it down into signals to be used by the other modules. It is best to think of Control as a "Top" level state machine for the entire processor. The processor should have the following states \emph{FETCH}, \emph{DECODE}, \emph{EXECUTE}, \emph{MEMORY\_WRITE}. Note that during each state, the display will shows the relative information to that state, given in Section \ref{sec:display}. \\ 
 
 The device should initiate in the \emph{FETCH} state by sending an active low RESET signal in your test bench. If RESET is HIGH, take in the instruction IR and proceed to the \emph{DECODE} state. \\
 
@@ -42,7 +53,7 @@ After the instruction is completed, take the result and write it into the Destin
 Each state should transition on the positive edge of a clock pulse which will come from pressing KEY0.
 
 \subsubsection{Design an ALU}
-Using the operations listed in Table \ref{tab:aluop}, create an ALU in VHDL that takes in two 8 bit values and returns the result to the processor. Required signals: {\bf A}, {\bf B}, {\bf opcode}, and {\bf result}.
+Using the operations listed in Table \ref{tab:aluop}, create an ALU in VHDL that takes in two 8 bit values and returns the result to the processor. Required signals: {\bf A}, {\bf B}, {\bf opcode}, and {\bf ALU\_out}. Note that the inputs {\bf A} and {\bf B} should be read from the FLASH memory controller , the {\bf ALU\_out} is a shift register in the ALU   where the result of the operation will be stored prior to the \emph{MEMORY\_WRITE} state and the {\bf opcode} comes from IR.
 
 \begin {table}[H]
 	\caption {List of ALU operations} 
@@ -64,10 +75,6 @@ Using the operations listed in Table \ref{tab:aluop}, create an ALU in VHDL that
 	\end{center}
 \end{table}
 
-\subsubsection{Program Counter}
-
-Design a simple program counter that keeps track of the number of operations completed and increments by one at the end of MEMORY\_WRITE. Store the result to a register to be shown through the display driver.
-
 \subsubsection{Initiate the FLASH Memory}
 
 Using the DE2-115 Control Panel, initiate arbitrary values into the FLASH memory and keep a record of this data to compare your results. Figure \ref{fig:controlpanel} shows the option screen for loading values. 
@@ -80,9 +87,9 @@ Using the DE2-115 Control Panel, initiate arbitrary values into the FLASH memory
 \end{figure}
 
 \subsubsection{FLASH Memory Controller}
-The Altera DE2-115 FPGA Development Board contains an 8 MB FLASH memory chip. For this activity you will implement a FLASH memory controller that can read and write to the first 256 bits of the chip. A list of pins used for interacting with the chip can be found in Table \ref{tab:flash}. Notice that addresses are normally 23 bits long however for this exercise you should set FL\_ADDR[19] to FL\_ADDR[22] to the source address and set the remaining bits to zero. 
+The Altera DE2-115 FPGA Development Board contains an 8 MB FLASH memory chip. For this activity you will implement a FLASH memory controller that can read and write to the first 256 bits of the chip. A list of pins used for interacting with the chip can be found in Table \ref{tab:flash}. Notice that addresses are normally 23 bits long, however for this exercise you should set FL\_ADDR[19] to FL\_ADDR[22] to the source address and set the remaining bits to zero. 
 
-You should pay careful attention to how data is read and written to the chip. The signal FL\_CE\_N should be kept HIGH to keep the chip enabled. If you want to read data from the chip, you must first tell the chip the address of where the data is stored and then set the signal FL\_OE\_N to HIGH in order to send the data onto the data lines. Once the data is read, set the signal FL\_OE\_N back to LOW. If you want to write data to the chip, you must tell the chip the address location and set the data on the data lines then set FL\_WE\_N to HIGH. When the operation is completed, make sure to set the signal FL\_WE\_N to LOW. NOTE: you should never set both FL\_OE\_N and FL\_WE\_N to HIGH at the same time as you may damage the device. FL\_RY may be useful to determine if an operation has been completed. 
+You should pay careful attention to how data is read and written to the chip. The signal FL\_CE\_N should be kept HIGH to keep the chip enabled. If you want to read data from the chip, you must first tell the chip the address of where the data is stored and then set the signal FL\_OE\_N to HIGH,  in order to send the data onto the data lines. Once the data is read, set the signal FL\_OE\_N back to LOW. If you want to write data to the chip, you must tell the chip the address location, and set the data on the data lines then set FL\_WE\_N to HIGH. When the operation is completed, make sure to set the signal FL\_WE\_N to LOW. NOTE: you should never set both FL\_OE\_N and FL\_WE\_N to HIGH at the same time as you may damage the device. FL\_RY may be useful to determine if an operation has been completed. 
 
 \begin {table}[H]
 	\caption {Signal assignments for interfacing with the flash memory chip} 
@@ -104,18 +111,41 @@ You should pay careful attention to how data is read and written to the chip. Th
 	\end{center}
 \end{table}
 
+\subsubsection{Program Counter}
+
+Design a simple program counter that keeps track of the number of operations completed and increments by one at the end of MEMORY\_WRITE. Store the result to a register to be shown through the display driver.
+
 \subsubsection{Results Display}
+\label{sec:display}
 As has been done in previous labs, create a display driver for showing information relative the the current state.
 
-\begin{itemize}
-	\item HEX7 and HEX6 should display the value stored in Source Address 1. 
-	\item HEX5 and HEX4 should display the value stored in Source Address 2.
-	\item HEX3 and HEX2 should display the result of the operation.
-	\item HEX0 should display the Program Counter
+\begin{enumerate}
 	\item LEDG3 through LEDG0 should display the current state; FETCH, DECODE, EXECUTE, and MEMORY\_WRITE respectively. 
-	\item The display should reset to a dashes if the data is not available yet.
-\end{itemize}
-
+	\item \emph{FETCH}
+	\begin{itemize}
+		 \item Display a dash "-" across all displays.
+	\end{itemize}
+	\item \emph{DECODE}
+	\begin{itemize}
+		\item HEX7 and HEX6 should display the Source Address 1 from IR.
+		\item HEX5 and HEX4 should display the Source Address 2 from IR.
+		\item HEX3 should display the ALU operation from IR.
+		\item HEX0 should display the current Program Counter.
+	\end{itemize}
+	\item \emph{EXECUTE}
+	\begin{itemize}
+		\item HEX7 and HEX6 should display the value stored in Source Address 1.
+		\item HEX5 and HEX4 should display the value stored in Source Address 2.
+		\item HEX3 and HEX2 should display ALU\_out the result of the operation.
+		\item HEX0 should display the current Program Counter.
+	\end{itemize}
+	\item \emph{MEMORY\_WRITE}
+	\begin{itemize}
+		\item HEX7 and HEX6 should display the Destination Address.
+		\item HEX3 and HEX2 should display the value stored in the Destination Address.
+		\item HEX0 should display the incremented Program Counter.
+	\end{itemize}
+\end{enumerate}
 
 \subsection{Lab Report}
 After completing the activities in this lab you should create a zip folder with the following and then submit it to Sakai:

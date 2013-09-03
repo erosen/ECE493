@@ -1,11 +1,11 @@
 \section{Lab 4 - Finite-State Machines}
 
 \subsection{Introduction}
-A \emph{finite-state machine} (FSM) is a system that can be in only one state at a time; the state it is in at any given time is called the current state. It can change from one state to another when initiated by a triggering event or condition; this is called a transition. A particular FSM is defined by a list of its states, and the triggering condition for each transition. This lab will examine a simple FSM to give the general idea of how they work and build upon it to create a system modeled off of a real world system, a vending machine.
+A \emph{finite-state machine} (FSM) is a model for sequential logic that consists of a set of states (including an initial or reset state) a set of inputs/outputs and a transition function that shows the transition from one state to other states. The state the FSM is in at any given time is called the {\it current} state. The FSM can change from one state to another when initiated by a triggering event or condition (input); this is called a transition. This lab will examine a simple FSM to give the general idea of how they work, and build upon it to create a system modeled off of a real world example, a vending machine.
 
 \subsection{Pre-lab}
 
-Before coming to the lab, please complete the following and upload to Sakai:
+Before coming to the lab, please complete the following activity and upload the results to Sakai.
 \begin{itemize}
 	\item By examining the code in Listing \ref{code:fsm} write out its state machine transition graph.
 \end{itemize}
@@ -15,7 +15,7 @@ Before coming to the lab, please complete the following and upload to Sakai:
 
 \subsubsection{FSM}
 
-Given the state machine transition graph in Figure \ref{fig:fsm}, design VHDL for the state transitions of this diagram. Note that in the state transition graph, we show the transition behavior as D0 D1 = 00 / 1 0 to indicate that the transition occurs when D0 = 0 and D1 = 0, and causes Z1 to be 1 and Z2 to be 0. Assume that state A is the reset state for this machine.
+Given the state machine transition graph in Figure \ref{fig:fsm}, design VHDL code for the state transitions of this diagram. Note that in the state transition graph, we show the transition behavior as input/output where the input is denoted as D$_1$D$_0$ and the output is denoted as  Z$_1$Z$_0$. For example 00/01 means D$_1$D$_0$ = 00 and causes  Z$_1$Z$_0$ = 01. Assume that state A is the reset state for this machine.
 
 \begin{figure}[H]
 	\centering
@@ -24,7 +24,7 @@ Given the state machine transition graph in Figure \ref{fig:fsm}, design VHDL fo
 	\label{fig:fsm}
 \end{figure}
 
-You may find the code below to be helpful in completing this activity. 
+The code below shows a simple example of a FSM. You can build upon this code in completing this lab. 
 
 \begin{lstlisting}[caption=Sample code for a Finite State Machine, label=code:fsm]
 -- User-Encoded State Machine
@@ -105,14 +105,14 @@ end rtl;
 
 \subsubsection{Vending Machine}
 
-Design a custom finite-state machine to control a vending machine to dispense products. The design must follow the following specifications:
+Design a custom finite-state machine to control a vending machine to dispense products. The design has the following specifications:
 
-\begin{enumerate}
+\begin{enumerate} 
 
 	\item The state machine should have three states:
 
 	\begin{itemize}
-		\item \emph{IDLE}: This is the default state for the machine. The machine should stay in this state until a product is selected. If no items are selected, display a dash across all HEX displays. This state should also set the 6-bit signal QUARTERS and the signal DISPENSE\_READY to zero as well as LEDR0 - LEDR17. KEY1 should set the signal COIN\_RETURN to HIGH which will reset the machine.
+		\item \emph{IDLE}: This is the default (reset) state for the machine. The machine should stay in this state until a product is selected. If no items are selected, display a dash across all HEX displays. This state should also set a 6-bit signal QUARTERS and the signal DISPENSE\_READY to zero as well as LEDR0 - LEDR17. KEY1 should set the signal COIN\_RETURN to HIGH which will reset the machine.
 
 		\item \emph{PRODUCT\_SELECT}: The state machine will move into this state if product(s) are selected through use of the switches (SW0 - SW15) on the FPGA board. Display the total cost in number of quarters needed of all products selected on HEX5 - HEX4 in decimal.  KEY3 and KEY2 should increment QUARTERS by a dollar and quarter respectively when pressed. Display the value of QUARTERS on HEX1 - HEX0. When the correct number of quarters have been inserted, the signal DISPENSE\_READY should go HIGH and the state should transition to DISPENSE. If KEY1 is pressed, return to the IDLE state. A list of available products and their cost can be found in Table \ref{tab:costlist}.
 
