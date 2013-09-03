@@ -1,0 +1,9 @@
+|part2
+Clk => J1.IN0
+Clk => K1.IN0
+J => J1.IN1
+K => K1.IN1
+Q <= Q.DB_MAX_OUTPUT_PORT_TYPE
+Qbar <= Qbar.DB_MAX_OUTPUT_PORT_TYPE
+
+

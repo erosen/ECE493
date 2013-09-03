@@ -1,0 +1,231 @@
+|part3
+KEY[0] => JK:bit0.Clk
+KEY[0] => JK:bit1.Clk
+KEY[0] => JK:bit2.Clk
+KEY[0] => JK:bit3.Clk
+KEY[0] => JK:bit4.Clk
+KEY[0] => JK:bit5.Clk
+KEY[0] => JK:bit6.Clk
+KEY[0] => JK:bit7.Clk
+KEY[0] => LEDR[8].DATAIN
+HEX1[6] <= bcd7seg:display1.H[6]
+HEX1[5] <= bcd7seg:display1.H[5]
+HEX1[4] <= bcd7seg:display1.H[4]
+HEX1[3] <= bcd7seg:display1.H[3]
+HEX1[2] <= bcd7seg:display1.H[2]
+HEX1[1] <= bcd7seg:display1.H[1]
+HEX1[0] <= bcd7seg:display1.H[0]
+HEX0[6] <= bcd7seg:display0.H[6]
+HEX0[5] <= bcd7seg:display0.H[5]
+HEX0[4] <= bcd7seg:display0.H[4]
+HEX0[3] <= bcd7seg:display0.H[3]
+HEX0[2] <= bcd7seg:display0.H[2]
+HEX0[1] <= bcd7seg:display0.H[1]
+HEX0[0] <= bcd7seg:display0.H[0]
+LEDR[0] <= JK:bit0.Q
+LEDR[1] <= JK:bit1.Q
+LEDR[2] <= JK:bit2.Q
+LEDR[3] <= JK:bit3.Q
+LEDR[4] <= JK:bit4.Q
+LEDR[5] <= JK:bit5.Q
+LEDR[6] <= JK:bit6.Q
+LEDR[7] <= JK:bit7.Q
+LEDR[8] <= KEY[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|JK:bit0
+Clk => Qb.CLK
+Clk => Qa.CLK
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+Q <= Qa.DB_MAX_OUTPUT_PORT_TYPE
+Qbar <= Qb.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|JK:bit1
+Clk => Qb.CLK
+Clk => Qa.CLK
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+Q <= Qa.DB_MAX_OUTPUT_PORT_TYPE
+Qbar <= Qb.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|JK:bit2
+Clk => Qb.CLK
+Clk => Qa.CLK
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+Q <= Qa.DB_MAX_OUTPUT_PORT_TYPE
+Qbar <= Qb.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|JK:bit3
+Clk => Qb.CLK
+Clk => Qa.CLK
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+Q <= Qa.DB_MAX_OUTPUT_PORT_TYPE
+Qbar <= Qb.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|JK:bit4
+Clk => Qb.CLK
+Clk => Qa.CLK
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+Q <= Qa.DB_MAX_OUTPUT_PORT_TYPE
+Qbar <= Qb.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|JK:bit5
+Clk => Qb.CLK
+Clk => Qa.CLK
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+Q <= Qa.DB_MAX_OUTPUT_PORT_TYPE
+Qbar <= Qb.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|JK:bit6
+Clk => Qb.CLK
+Clk => Qa.CLK
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+Q <= Qa.DB_MAX_OUTPUT_PORT_TYPE
+Qbar <= Qb.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|JK:bit7
+Clk => Qb.CLK
+Clk => Qa.CLK
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+J => process_0.IN0
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+K => process_0.IN1
+Q <= Qa.DB_MAX_OUTPUT_PORT_TYPE
+Qbar <= Qb.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|bcd7seg:display1
+C[0] => Mux0.IN19
+C[0] => Mux1.IN19
+C[0] => Mux2.IN19
+C[0] => Mux3.IN19
+C[0] => Mux4.IN19
+C[0] => Mux5.IN19
+C[0] => Mux6.IN19
+C[1] => Mux0.IN18
+C[1] => Mux1.IN18
+C[1] => Mux2.IN18
+C[1] => Mux3.IN18
+C[1] => Mux4.IN18
+C[1] => Mux5.IN18
+C[1] => Mux6.IN18
+C[2] => Mux0.IN17
+C[2] => Mux1.IN17
+C[2] => Mux2.IN17
+C[2] => Mux3.IN17
+C[2] => Mux4.IN17
+C[2] => Mux5.IN17
+C[2] => Mux6.IN17
+C[3] => Mux0.IN16
+C[3] => Mux1.IN16
+C[3] => Mux2.IN16
+C[3] => Mux3.IN16
+C[3] => Mux4.IN16
+C[3] => Mux5.IN16
+C[3] => Mux6.IN16
+H[6] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+H[5] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+H[4] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+H[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+H[2] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+H[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+H[0] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|bcd7seg:display0
+C[0] => Mux0.IN19
+C[0] => Mux1.IN19
+C[0] => Mux2.IN19
+C[0] => Mux3.IN19
+C[0] => Mux4.IN19
+C[0] => Mux5.IN19
+C[0] => Mux6.IN19
+C[1] => Mux0.IN18
+C[1] => Mux1.IN18
+C[1] => Mux2.IN18
+C[1] => Mux3.IN18
+C[1] => Mux4.IN18
+C[1] => Mux5.IN18
+C[1] => Mux6.IN18
+C[2] => Mux0.IN17
+C[2] => Mux1.IN17
+C[2] => Mux2.IN17
+C[2] => Mux3.IN17
+C[2] => Mux4.IN17
+C[2] => Mux5.IN17
+C[2] => Mux6.IN17
+C[3] => Mux0.IN16
+C[3] => Mux1.IN16
+C[3] => Mux2.IN16
+C[3] => Mux3.IN16
+C[3] => Mux4.IN16
+C[3] => Mux5.IN16
+C[3] => Mux6.IN16
+H[6] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+H[5] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+H[4] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+H[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+H[2] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+H[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+H[0] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

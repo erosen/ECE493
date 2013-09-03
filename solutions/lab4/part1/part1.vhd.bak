@@ -1,0 +1,74 @@
+-- User-Encoded State Machine
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity part1 is
+	port(clk	 	 : in std_logic;
+		reset	  : in std_logic;
+		input	  : in std_logic;
+		output	  : out std_logic);
+	
+end part1;
+
+architecture Structure of part1 is
+	-- Build an enumerated type for the state machine
+	type count_state is (A, B, C, D);
+	
+	-- Registers to hold the current state and the next state
+	signal present_state, next_state	   : count_state;
+	
+	-- Attribute to declare a specific encoding for the states
+	attribute syn_encoding				  : string;
+	attribute syn_encoding of count_state : type is "11 01 10 00";
+	
+begin
+	-- Move to the next state
+	process(clk, reset)
+	begin
+		if reset = '1' then
+			present_state <= A;
+		elsif (rising_edge(clk)) then
+			present_state <= next_state;
+		end if;
+	end process;
+
+	-- Determine what the next state will be, and set the output bits
+	process (present_state, input)
+	begin
+		case present_state is
+			when A =>
+				if (input = '0') then
+					next_state <= B;
+					output <= '0';
+				else
+					next_state <= D;
+					output <= '0';
+				end if;
+			when B =>
+				if (input = '0') then
+					next_state <= C;
+					output <= '1';
+				else
+					next_state <= A;
+					output <= '0';
+				end if;
+			when C =>
+				if (input = '0') then
+					next_state <= D;
+					output <= '0';
+				else
+					next_state <= B;
+					output <= '1';
+				end if;
+			when D =>
+				if (input = '0') then
+					next_state <= A;
+					output <= '0';
+				else
+					next_state <= C;
+					output <= '1';
+				end if;
+		end case;
+	end process;
+	
+end Structure;

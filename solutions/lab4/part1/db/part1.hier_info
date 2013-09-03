@@ -1,0 +1,22 @@
+|part1
+clk => present_state~1.DATAIN
+reset => present_state~3.DATAIN
+D0 => Selector0.IN4
+D0 => Selector4.IN4
+D0 => Selector9.IN2
+D0 => Equal0.IN1
+D0 => Equal1.IN1
+D0 => Equal2.IN0
+D0 => Equal3.IN1
+D1 => Selector1.IN4
+D1 => Selector7.IN4
+D1 => Equal0.IN0
+D1 => Equal1.IN0
+D1 => Equal2.IN1
+D1 => Selector0.IN1
+D1 => Selector3.IN3
+D1 => Equal3.IN0
+Z0 <= Z0$latch.DB_MAX_OUTPUT_PORT_TYPE
+Z1 <= Z1$latch.DB_MAX_OUTPUT_PORT_TYPE
+
+

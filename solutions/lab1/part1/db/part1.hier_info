@@ -1,0 +1,8 @@
+|part1
+SW[1] => F.IN0
+SW[1] => F.IN0
+SW[2] => F.IN1
+SW[2] => F.IN1
+LEDG[0] <= F.DB_MAX_OUTPUT_PORT_TYPE
+
+

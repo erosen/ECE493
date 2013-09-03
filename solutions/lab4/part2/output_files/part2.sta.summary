@@ -1,0 +1,185 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'present_state~5'
+Slack : -6.087
+TNS   : -110.531
+
+Type  : Slow 1200mV 85C Model Setup 'present_state~4'
+Slack : -5.592
+TNS   : -108.175
+
+Type  : Slow 1200mV 85C Model Setup 'KEY[0]'
+Slack : -5.118
+TNS   : -10.214
+
+Type  : Slow 1200mV 85C Model Setup 'SW[0]'
+Slack : -3.492
+TNS   : -18.734
+
+Type  : Slow 1200mV 85C Model Setup 'KEY[2]'
+Slack : -2.706
+TNS   : -15.120
+
+Type  : Slow 1200mV 85C Model Hold 'KEY[2]'
+Slack : -3.613
+TNS   : -20.610
+
+Type  : Slow 1200mV 85C Model Hold 'SW[0]'
+Slack : -3.419
+TNS   : -18.713
+
+Type  : Slow 1200mV 85C Model Hold 'present_state~5'
+Slack : -1.602
+TNS   : -17.020
+
+Type  : Slow 1200mV 85C Model Hold 'present_state~4'
+Slack : -1.448
+TNS   : -11.586
+
+Type  : Slow 1200mV 85C Model Hold 'KEY[0]'
+Slack : 0.031
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'KEY[0]'
+Slack : -3.000
+TNS   : -5.570
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'KEY[2]'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'SW[0]'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'present_state~4'
+Slack : 0.376
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'present_state~5'
+Slack : 0.379
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'present_state~5'
+Slack : -5.560
+TNS   : -98.694
+
+Type  : Slow 1200mV 0C Model Setup 'present_state~4'
+Slack : -5.092
+TNS   : -97.245
+
+Type  : Slow 1200mV 0C Model Setup 'KEY[0]'
+Slack : -4.506
+TNS   : -8.986
+
+Type  : Slow 1200mV 0C Model Setup 'SW[0]'
+Slack : -3.138
+TNS   : -16.587
+
+Type  : Slow 1200mV 0C Model Setup 'KEY[2]'
+Slack : -2.351
+TNS   : -13.169
+
+Type  : Slow 1200mV 0C Model Hold 'KEY[2]'
+Slack : -3.246
+TNS   : -18.540
+
+Type  : Slow 1200mV 0C Model Hold 'SW[0]'
+Slack : -3.124
+TNS   : -17.119
+
+Type  : Slow 1200mV 0C Model Hold 'present_state~5'
+Slack : -1.297
+TNS   : -12.840
+
+Type  : Slow 1200mV 0C Model Hold 'present_state~4'
+Slack : -1.283
+TNS   : -10.180
+
+Type  : Slow 1200mV 0C Model Hold 'KEY[0]'
+Slack : -0.025
+TNS   : -0.025
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'KEY[0]'
+Slack : -3.000
+TNS   : -5.570
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'KEY[2]'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'SW[0]'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'present_state~5'
+Slack : 0.336
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'present_state~4'
+Slack : 0.386
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'present_state~5'
+Slack : -3.202
+TNS   : -55.413
+
+Type  : Fast 1200mV 0C Model Setup 'present_state~4'
+Slack : -2.570
+TNS   : -49.695
+
+Type  : Fast 1200mV 0C Model Setup 'KEY[0]'
+Slack : -2.211
+TNS   : -4.399
+
+Type  : Fast 1200mV 0C Model Setup 'SW[0]'
+Slack : -1.201
+TNS   : -6.277
+
+Type  : Fast 1200mV 0C Model Setup 'KEY[2]'
+Slack : -0.785
+TNS   : -4.141
+
+Type  : Fast 1200mV 0C Model Hold 'KEY[2]'
+Slack : -2.246
+TNS   : -12.897
+
+Type  : Fast 1200mV 0C Model Hold 'SW[0]'
+Slack : -2.118
+TNS   : -11.577
+
+Type  : Fast 1200mV 0C Model Hold 'present_state~5'
+Slack : -1.088
+TNS   : -13.859
+
+Type  : Fast 1200mV 0C Model Hold 'present_state~4'
+Slack : -0.809
+TNS   : -6.360
+
+Type  : Fast 1200mV 0C Model Hold 'KEY[0]'
+Slack : -0.304
+TNS   : -0.483
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'KEY[0]'
+Slack : -3.000
+TNS   : -5.518
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'KEY[2]'
+Slack : -3.000
+TNS   : -5.390
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'SW[0]'
+Slack : -3.000
+TNS   : -3.358
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'present_state~4'
+Slack : 0.277
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'present_state~5'
+Slack : 0.312
+TNS   : 0.000
+
+------------------------------------------------------------

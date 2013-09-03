@@ -1,0 +1,6 @@
+
+State Machine - |part2|present_state
+Name present_state~5 present_state~4 
+present_state.IDLE 0 0 
+present_state.PRODUCT_SELECT 0 1 
+present_state.DISPENSE 1 0 

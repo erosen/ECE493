@@ -1,0 +1,8 @@
+
+State Machine - |part1|present_state
+Name present_state~6 present_state~5 present_state~4 
+present_state.A 0 0 0 
+present_state.B 0 0 1 
+present_state.C 0 1 0 
+present_state.D 0 1 1 
+present_state.E 1 0 0 
