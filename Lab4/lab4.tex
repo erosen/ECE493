@@ -112,17 +112,19 @@ Design a custom finite-state machine to control a vending machine to dispense pr
 	\item The state machine should have three states:
 
 	\begin{itemize}
-		\item \emph{IDLE}: This is the default (reset) state for the machine. The machine should stay in this state until a product is selected. If no items are selected, display a dash across all HEX displays. This state should also set a 6-bit signal QUARTERS and the signal DISPENSE\_READY to zero as well as LEDR0 - LEDR17. KEY1 should set the signal COIN\_RETURN to HIGH which will reset the machine.
+		\item \emph{IDLE}: This is the default (reset) state for the machine. The machine should stay in this state until at least one product is selected. Being that this is the reset state, you should initialize the signals QUARTERS, COST, and DISPENSE\_READY to zero. Make sure that LEDR0 to LEDR17 along with LEDG1 to LED8 are set to off. While in this state, you should display a dash across all HEX displays. 
 
-		\item \emph{PRODUCT\_SELECT}: The state machine will move into this state if product(s) are selected through use of the switches (SW0 - SW15) on the FPGA board. Display the total cost in number of quarters needed of all products selected on HEX5 - HEX4 in decimal.  KEY3 and KEY2 should increment QUARTERS by a dollar and quarter respectively when pressed. Display the value of QUARTERS on HEX1 - HEX0. When the correct number of quarters have been inserted, the signal DISPENSE\_READY should go HIGH and the state should transition to DISPENSE. If KEY1 is pressed, return to the IDLE state. A list of available products and their cost can be found in Table \ref{tab:costlist}.
+		\item \emph{PRODUCT\_SELECT}: The state machine will move into this state if product(s) are selected through use of the switches (SW0 - SW15) on the FPGA board. Display the total cost in number of quarters needed of all products selected on HEX5 - HEX4 in hexadecimal.  KEY3 and KEY2 should increment QUARTERS by a dollar and quarter respectively when pressed. Display the value of QUARTERS on HEX1 - HEX0. When the correct number of quarters have been inserted, the signal DISPENSE\_READY should go HIGH (which should be shown on LEDG8) and the state should transition to DISPENSE. A list of available products and their cost can be found in Table \ref{tab:costlist}.
 
 		\item \emph{DISPENSE}: Once the proper amount of quarters have been deposited, the item should be dispensed from the machine. To show that the item(s) have been dispensed, turn on LEDR0-LEDR17 and set the next state to idle.
 
 	\end{itemize}
 	
-	\item KEY0 will act as a CLOCK input. The states should transition on the rising edge. This means that you should select a product and then send a CLOCK pulse to calculate the cost of the item(s) selected. Then add quarters into the machine and send another CLOCK pulse when there is the right amount of quarters. If there is not enough quarters inserted, the state should not change. Once the item(s) are dispensed, send another CLOCK pulse to return to IDLE.
+	\item KEY0 will act as a CLOCK input and KEY1 will act as a coin return or rest. The states should transition on the rising edge. This means that you should select a product and then send a CLOCK pulse to calculate the cost of the item(s) selected. Then add quarters into the machine and send another CLOCK pulse when there is the right amount of quarters. If there is not enough quarters inserted, the state should not change. Once the item(s) are dispensed, send another CLOCK pulse to return to IDLE.
 
 	\item The current state; \emph{IDLE}, \emph{PRODUCT\_SELECT}, and \emph{DISPENSE} should be displayed by turning on LEDG0 - LEDG2 respectively.
+	
+	\item Both signals QUARTERS and COST should be of the type INTEGER with a range of 0 to 40.  You will need to use the package \emph{ieee.numeric_std.all}.
 	
 \end{enumerate}
 
