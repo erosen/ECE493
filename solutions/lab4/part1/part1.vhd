@@ -7,7 +7,7 @@ entity part1 is
 		reset	  : in std_logic;
 		D0, D1	  : in std_logic;
 		Z0, Z1	  : out std_logic;
-		pres, nextstate : out std_logic_vector(0 to 2) );
+		pstate, nstate : out std_logic_vector(0 to 2) );
 
 end part1;
 
@@ -104,16 +104,16 @@ begin
 		end case;
 	end process;
 
-		pres <= "000" when present_state = A else
+		pstate <= "000" when present_state = A else
              		"001" when present_state = B else
 			"010" when present_state = C else
              		"011" when present_state = D else
              		"100";
              		
-		nextstate <= "000" when present_state = A else
-        		"001" when present_state = B else
-			"010" when present_state = C else
-             		"011" when present_state = D else
+		nstate <= "000" when next_state = A else
+        		"001" when next_state = B else
+			"010" when next_state = C else
+             		"011" when next_state = D else
              		"100";
 
 
