@@ -125,7 +125,7 @@ Design a custom finite-state machine to control a vending machine to dispense pr
 	\item The current state; \emph{IDLE}, \emph{PRODUCT\_SELECT}, and \emph{DISPENSE} should be displayed by turning on LEDG0 - LEDG2 respectively.
 	
 	\item Both signals QUARTERS and COST should be of the type INTEGER with a range of 0 to 40.  You will need to use the package \emph{ieee.numeric_std.all}.
-	
+
 \end{enumerate}
 
 \begin{table}[H]
@@ -146,14 +146,39 @@ Design a custom finite-state machine to control a vending machine to dispense pr
 
 \subsection{Lab Report}
 
-After completing the activities in this lab you should create a zip folder with the following and then submit it to Sakai:
-
+Your lab report submission should break down as follows:
 \begin{itemize}
-	\item Commented VHDL code.
-	\item VHDL test bench for the FSM activity.
-	\item Waveform for the FSM activity.
-	\item Pictures of the results from the vending machine activity.
-	\item A discussion on the results of compilation including longest path delay, the total number of logic elements used, and issues you encountered while performing the lab.
+
+	\item Extract from the fpga lab folder the VHDL ﬁle from each project, upload each of them to the Sakai Assignment page. Ex: part1.vhdl and part2.vhdl
+	\begin{itemize}
+		\item Make sure that your code is well commented.
+	\end{itemize}
+	
+	Waveforms for Part 1:
+	\begin{itemize}
+		\item Your clock signal should last 100ns and have a 50\% duty cycle
+		
+		\item Send a reset pulse that lasts the first clock cycle
+		
+		\item Provide inputs for D0 and D1 that last a full clock cycle
+		\begin{itemize}
+			\item Your present state should match the previous next state
+		\end{itemize}
+		
+		\item You must execute 7 different transitions that hit each state at least once
+		\begin{itemize}
+			\item Provide in your report your transition order. Ex. A -> B - > C -> D -> E \dots
+		\end{itemize}
+	\end{itemize}
+	
+	\item For Part 2 after compilation go to Tools > Netlist Viewers > RTL Viewer. Print a pdf of this page and discuss what you see.
+	
+	\item Your report should include a one page discussion on:
+	\begin{itemize}
+		\item The number of pins used in part 1 and part 2 and where they come from.
+		\item An example of a FSM used in everyday technology and provide the different states it might have with your reasoning.
+	\end{itemize}
+	
 \end{itemize}
 
 
