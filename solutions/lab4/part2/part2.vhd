@@ -14,7 +14,7 @@ end part2;
 architecture Structure of part2 is
 	COMPONENT hexdisplay
 		PORT (C	: IN	STD_LOGIC_VECTOR(4 DOWNTO 0);
-			  H	: OUT	STD_LOGIC_VECTOR(0 TO 6));
+				H	: OUT	STD_LOGIC_VECTOR(0 TO 6));
 	END COMPONENT;
 	
 	-- Build an enumerated type for the state machine
