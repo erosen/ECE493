@@ -56,7 +56,7 @@ BEGIN
     BEGIN
 		IF (Clk='1' and Clk'event) THEN
         IF (J='0' and K='0') THEN
-				Qa <= Qa;
+			Qa <= Qa;
             Qb <=Qb;
         ELSIF (J='0' and K='1') THEN
             Qa <= '1';
@@ -81,7 +81,7 @@ USE ieee.std_logic_1164.all;
 -- 7seg display decoder
 ENTITY bcd7seg IS
 	PORT (	C	: IN	STD_LOGIC_VECTOR(3 DOWNTO 0);
-				H	: OUT	STD_LOGIC_VECTOR(0 TO 6));
+			H	: OUT	STD_LOGIC_VECTOR(0 TO 6));
 END bcd7seg;
 
 ARCHITECTURE Structure OF bcd7seg IS

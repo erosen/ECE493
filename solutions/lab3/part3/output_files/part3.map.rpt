@@ -1,5 +1,5 @@
 Analysis & Synthesis report for part3
-Tue Aug 27 22:34:22 2013
+Sat Oct 05 20:37:50 2013
 Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
 
 
@@ -15,14 +15,14 @@ Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
   9. Multiplexer Restructuring Statistics (Restructuring Performed)
- 10. Port Connectivity Checks: "mux4to1:m43"
- 11. Port Connectivity Checks: "mux4to1:m42"
- 12. Port Connectivity Checks: "mux4to1:m41"
- 13. Port Connectivity Checks: "mux4to1:m40"
- 14. Port Connectivity Checks: "mux2to1:m23"
- 15. Port Connectivity Checks: "mux2to1:m22"
- 16. Port Connectivity Checks: "mux2to1:m21"
- 17. Port Connectivity Checks: "mux2to1:m20"
+ 10. Port Connectivity Checks: "mux4to1:m47"
+ 11. Port Connectivity Checks: "mux4to1:m46"
+ 12. Port Connectivity Checks: "mux4to1:m45"
+ 13. Port Connectivity Checks: "mux4to1:m44"
+ 14. Port Connectivity Checks: "mux4to1:m43"
+ 15. Port Connectivity Checks: "mux4to1:m42"
+ 16. Port Connectivity Checks: "mux4to1:m41"
+ 17. Port Connectivity Checks: "mux4to1:m40"
  18. Elapsed Time Per Partition
  19. Analysis & Synthesis Messages
 
@@ -50,16 +50,16 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Aug 27 22:34:22 2013       ;
+; Analysis & Synthesis Status        ; Successful - Sat Oct 05 20:37:50 2013       ;
 ; Quartus II 32-bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Full Version ;
 ; Revision Name                      ; part3                                       ;
 ; Top-level Entity Name              ; part3                                       ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 42                                          ;
-;     Total combinational functions  ; 42                                          ;
+; Total logic elements               ; 38                                          ;
+;     Total combinational functions  ; 38                                          ;
 ;     Dedicated logic registers      ; 0                                           ;
 ; Total registers                    ; 0                                           ;
-; Total pins                         ; 34                                          ;
+; Total pins                         ; 37                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -165,43 +165,43 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                      ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path               ; Library ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------+---------+
-; part3.vhd                        ; yes             ; User VHDL File  ; C:/Users/Elie/Desktop/lab3/part3/part3.vhd ;         ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                         ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------+---------+
+; part3.vhd                        ; yes             ; User VHDL File  ; C:/Users/Elie/Documents/GitHub/ECE493/solutions/lab3/part3/part3.vhd ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary               ;
-+---------------------------------------------+-------------+
-; Resource                                    ; Usage       ;
-+---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 42          ;
-;                                             ;             ;
-; Total combinational functions               ; 42          ;
-; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 30          ;
-;     -- 3 input functions                    ; 6           ;
-;     -- <=2 input functions                  ; 6           ;
-;                                             ;             ;
-; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 42          ;
-;     -- arithmetic mode                      ; 0           ;
-;                                             ;             ;
-; Total registers                             ; 0           ;
-;     -- Dedicated logic registers            ; 0           ;
-;     -- I/O registers                        ; 0           ;
-;                                             ;             ;
-; I/O pins                                    ; 34          ;
-; Embedded Multiplier 9-bit elements          ; 0           ;
-; Maximum fan-out node                        ; SW[8]~input ;
-; Maximum fan-out                             ; 20          ;
-; Total fan-out                               ; 207         ;
-; Average fan-out                             ; 1.88        ;
-+---------------------------------------------+-------------+
++------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                      ;
++---------------------------------------------+--------------------+
+; Resource                                    ; Usage              ;
++---------------------------------------------+--------------------+
+; Estimated Total logic elements              ; 38                 ;
+;                                             ;                    ;
+; Total combinational functions               ; 38                 ;
+; Logic element usage by number of LUT inputs ;                    ;
+;     -- 4 input functions                    ; 26                 ;
+;     -- 3 input functions                    ; 12                 ;
+;     -- <=2 input functions                  ; 0                  ;
+;                                             ;                    ;
+; Logic elements by mode                      ;                    ;
+;     -- normal mode                          ; 38                 ;
+;     -- arithmetic mode                      ; 0                  ;
+;                                             ;                    ;
+; Total registers                             ; 0                  ;
+;     -- Dedicated logic registers            ; 0                  ;
+;     -- I/O registers                        ; 0                  ;
+;                                             ;                    ;
+; I/O pins                                    ; 37                 ;
+; Embedded Multiplier 9-bit elements          ; 0                  ;
+; Maximum fan-out node                        ; mux4to1:m44|Mux0~0 ;
+; Maximum fan-out                             ; 9                  ;
+; Total fan-out                               ; 200                ;
+; Average fan-out                             ; 1.79               ;
++---------------------------------------------+--------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -209,18 +209,22 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name     ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
-; |part3                     ; 42 (1)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |part3                  ;              ;
+; |part3                     ; 38 (1)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 37   ; 0            ; |part3                  ;              ;
 ;    |bcd7seg:displayA|      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|bcd7seg:displayA ;              ;
-;    |bcd7seg:displayB|      ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|bcd7seg:displayB ;              ;
+;    |bcd7seg:displayB|      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|bcd7seg:displayB ;              ;
 ;    |bcd7seg:displayS|      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|bcd7seg:displayS ;              ;
 ;    |fulladder:fa0|         ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|fulladder:fa0    ;              ;
-;    |fulladder:fa1|         ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|fulladder:fa1    ;              ;
+;    |fulladder:fa1|         ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|fulladder:fa1    ;              ;
 ;    |fulladder:fa2|         ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|fulladder:fa2    ;              ;
 ;    |fulladder:fa3|         ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|fulladder:fa3    ;              ;
 ;    |mux4to1:m40|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|mux4to1:m40      ;              ;
 ;    |mux4to1:m41|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|mux4to1:m41      ;              ;
 ;    |mux4to1:m42|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|mux4to1:m42      ;              ;
 ;    |mux4to1:m43|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|mux4to1:m43      ;              ;
+;    |mux4to1:m44|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|mux4to1:m44      ;              ;
+;    |mux4to1:m45|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|mux4to1:m45      ;              ;
+;    |mux4to1:m46|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|mux4to1:m46      ;              ;
+;    |mux4to1:m47|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |part3|mux4to1:m47      ;              ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -245,8 +249,45 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |part3|mux4to1:m43|Mux0    ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |part3|mux4to1:m43|Mux0    ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |part3|mux4to1:m47|Mux0    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
++-----------------------------------------+
+; Port Connectivity Checks: "mux4to1:m47" ;
++------+-------+----------+---------------+
+; Port ; Type  ; Severity ; Details       ;
++------+-------+----------+---------------+
+; i2   ; Input ; Info     ; Stuck at GND  ;
++------+-------+----------+---------------+
+
+
++-----------------------------------------+
+; Port Connectivity Checks: "mux4to1:m46" ;
++------+-------+----------+---------------+
+; Port ; Type  ; Severity ; Details       ;
++------+-------+----------+---------------+
+; i2   ; Input ; Info     ; Stuck at GND  ;
++------+-------+----------+---------------+
+
+
++-----------------------------------------+
+; Port Connectivity Checks: "mux4to1:m45" ;
++------+-------+----------+---------------+
+; Port ; Type  ; Severity ; Details       ;
++------+-------+----------+---------------+
+; i2   ; Input ; Info     ; Stuck at GND  ;
++------+-------+----------+---------------+
+
+
++-----------------------------------------+
+; Port Connectivity Checks: "mux4to1:m44" ;
++------+-------+----------+---------------+
+; Port ; Type  ; Severity ; Details       ;
++------+-------+----------+---------------+
+; i2   ; Input ; Info     ; Stuck at GND  ;
++------+-------+----------+---------------+
 
 
 +-----------------------------------------+
@@ -255,7 +296,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Port ; Type  ; Severity ; Details       ;
 +------+-------+----------+---------------+
 ; i2   ; Input ; Info     ; Stuck at GND  ;
-; i3   ; Input ; Info     ; Stuck at VCC  ;
 +------+-------+----------+---------------+
 
 
@@ -265,7 +305,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Port ; Type  ; Severity ; Details       ;
 +------+-------+----------+---------------+
 ; i2   ; Input ; Info     ; Stuck at GND  ;
-; i3   ; Input ; Info     ; Stuck at VCC  ;
 +------+-------+----------+---------------+
 
 
@@ -275,7 +314,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Port ; Type  ; Severity ; Details       ;
 +------+-------+----------+---------------+
 ; i2   ; Input ; Info     ; Stuck at GND  ;
-; i3   ; Input ; Info     ; Stuck at VCC  ;
 +------+-------+----------+---------------+
 
 
@@ -285,43 +323,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Port ; Type  ; Severity ; Details       ;
 +------+-------+----------+---------------+
 ; i2   ; Input ; Info     ; Stuck at GND  ;
-; i3   ; Input ; Info     ; Stuck at VCC  ;
-+------+-------+----------+---------------+
-
-
-+-----------------------------------------+
-; Port Connectivity Checks: "mux2to1:m23" ;
-+------+-------+----------+---------------+
-; Port ; Type  ; Severity ; Details       ;
-+------+-------+----------+---------------+
-; i1   ; Input ; Info     ; Stuck at GND  ;
-+------+-------+----------+---------------+
-
-
-+-----------------------------------------+
-; Port Connectivity Checks: "mux2to1:m22" ;
-+------+-------+----------+---------------+
-; Port ; Type  ; Severity ; Details       ;
-+------+-------+----------+---------------+
-; i1   ; Input ; Info     ; Stuck at GND  ;
-+------+-------+----------+---------------+
-
-
-+-----------------------------------------+
-; Port Connectivity Checks: "mux2to1:m21" ;
-+------+-------+----------+---------------+
-; Port ; Type  ; Severity ; Details       ;
-+------+-------+----------+---------------+
-; i1   ; Input ; Info     ; Stuck at GND  ;
-+------+-------+----------+---------------+
-
-
-+-----------------------------------------+
-; Port Connectivity Checks: "mux2to1:m20" ;
-+------+-------+----------+---------------+
-; Port ; Type  ; Severity ; Details       ;
-+------+-------+----------+---------------+
-; i1   ; Input ; Info     ; Stuck at GND  ;
 +------+-------+----------+---------------+
 
 
@@ -340,23 +341,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Full Version
-    Info: Processing started: Tue Aug 27 22:34:18 2013
+    Info: Processing started: Sat Oct 05 20:37:47 2013
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off part3 -c part3
 Warning (20028): Parallel compilation is not licensed and has been disabled
-Info (12021): Found 10 design units, including 5 entities, in source file part3.vhd
+Info (12021): Found 8 design units, including 4 entities, in source file part3.vhd
     Info (12022): Found design unit 1: part3-Structure
     Info (12022): Found design unit 2: fulladder-Structure
     Info (12022): Found design unit 3: mux4to1-Structure
-    Info (12022): Found design unit 4: mux2to1-Structure
-    Info (12022): Found design unit 5: bcd7seg-Structure
+    Info (12022): Found design unit 4: bcd7seg-Structure
     Info (12023): Found entity 1: part3
     Info (12023): Found entity 2: fulladder
     Info (12023): Found entity 3: mux4to1
-    Info (12023): Found entity 4: mux2to1
-    Info (12023): Found entity 5: bcd7seg
+    Info (12023): Found entity 4: bcd7seg
 Info (12127): Elaborating entity "part3" for the top level hierarchy
 Warning (10873): Using initial value X (don't care) for net "LEDR[0]" at part3.vhd(8)
-Info (12128): Elaborating entity "mux2to1" for hierarchy "mux2to1:m20"
 Info (12128): Elaborating entity "mux4to1" for hierarchy "mux4to1:m40"
 Info (12128): Elaborating entity "fulladder" for hierarchy "fulladder:fa0"
 Info (12128): Elaborating entity "bcd7seg" for hierarchy "bcd7seg:displayA"
@@ -365,14 +363,14 @@ Warning (13024): Output pins are stuck at VCC or GND
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 76 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 10 input pins
+Info (21057): Implemented 75 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 13 input pins
     Info (21059): Implemented 24 output pins
-    Info (21061): Implemented 42 logic cells
+    Info (21061): Implemented 38 logic cells
 Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 384 megabytes
-    Info: Processing ended: Tue Aug 27 22:34:22 2013
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Peak virtual memory: 380 megabytes
+    Info: Processing ended: Sat Oct 05 20:37:50 2013
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
 
 

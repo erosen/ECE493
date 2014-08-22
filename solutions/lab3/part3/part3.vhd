@@ -2,7 +2,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 
 ENTITY part3 is
-PORT (SW: IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+PORT (SW: IN STD_LOGIC_VECTOR(12 DOWNTO 0);
 		HEX3, HEX5, HEX7: OUT STD_LOGIC_VECTOR(0 TO 6);
 		LEDG: OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
 		LEDR: OUT STD_LOGIC_VECTOR(1 DOWNTO 0));
@@ -19,20 +19,14 @@ ARCHITECTURE Structure OF part3 IS
 				sel: IN STD_LOGIC_VECTOR(1 DOWNTO 0);
 				f : OUT	STD_LOGIC);
 	END COMPONENT;
-	
-	COMPONENT mux2to1
-		PORT (i0, i1 : IN	STD_LOGIC;
-			sel: IN STD_LOGIC;
-			f : OUT	STD_LOGIC);
-	END COMPONENT;
-	
+
 	COMPONENT bcd7seg
 		PORT (C	: IN	STD_LOGIC_VECTOR(3 DOWNTO 0);
 				H	: OUT	STD_LOGIC_VECTOR(0 TO 6));
 	END COMPONENT;
 	
 	SIGNAL A, B, S : STD_LOGIC_VECTOR(3 DOWNTO 0);
-	SIGNAL D0, D1, Zero : STD_LOGIC;
+	SIGNAL D0, D1, D2, D3, Zero : STD_LOGIC;
 	SIGNAL C : STD_LOGIC_VECTOR(4 DOWNTO 0);
 	
 	SIGNAL Ain, Bin : STD_LOGIC_VECTOR(3 DOWNTO 0); --intermediate signal
@@ -43,17 +37,21 @@ BEGIN
 	D0 <= SW(8);
 	D1 <= SW(9);
 	
-	m20: mux2to1 PORT MAP (B(0), '0', D0, Bin(0));
-	m21: mux2to1 PORT MAP (B(1), '0', D0, Bin(1));
-	m22: mux2to1 PORT MAP (B(2), '0', D0, Bin(2));
-	m23: mux2to1 PORT MAP (B(3), '0', D0, Bin(3));
+	D2 <= SW(10);
+	D3 <= SW(11);
 	
-	m40: mux4to1 PORT MAP (A(0), NOT A(0), '0', '1', D1 & D0, Ain(0));
-	m41: mux4to1 PORT MAP (A(1), NOT A(1), '0', '1', D1 & D0, Ain(1));
-	m42: mux4to1 PORT MAP (A(2), NOT A(2), '0', '1', D1 & D0, Ain(2));
-	m43: mux4to1 PORT MAP (A(3), NOT A(3), '0', '1', D1 & D0, Ain(3));
 	
-	C(0) <= D0;
+	m40: mux4to1 PORT MAP (A(0), NOT A(0), '0', 'X', D1 & D0, Ain(0));
+	m41: mux4to1 PORT MAP (A(1), NOT A(1), '0', 'X', D1 & D0, Ain(1));
+	m42: mux4to1 PORT MAP (A(2), NOT A(2), '0', 'X', D1 & D0, Ain(2));
+	m43: mux4to1 PORT MAP (A(3), NOT A(3), '0', 'X', D1 & D0, Ain(3));
+	
+	m44: mux4to1 PORT MAP (B(0), NOT A(0), '0', 'X', D3 & D2, Bin(0));
+	m45: mux4to1 PORT MAP (B(1), NOT A(1), '0', 'X', D3 & D2, Bin(1));
+	m46: mux4to1 PORT MAP (B(2), NOT A(2), '0', 'X', D3 & D2, Bin(2));
+	m47: mux4to1 PORT MAP (B(3), NOT A(3), '0', 'X', D3 & D2, Bin(3));
+	
+	C(0) <= SW(12);
 	
 	fa0: fulladder PORT MAP (Ain(0), Bin(0), C(0), S(0), C(1));
 	fa1: fulladder PORT MAP (Ain(1), Bin(1), C(1), S(1), C(2));
@@ -104,27 +102,6 @@ BEGIN
 			WHEN "10" => f <= i2;
 			WHEN OTHERS => f <= i3;
 		END CASE;
-	END PROCESS;
-END Structure;
--- mux2to1
-LIBRARY ieee;
-USE ieee.std_logic_1164.all;
-
-ENTITY mux2to1 IS
-	PORT (i0, i1 : IN	STD_LOGIC;
-			sel: IN STD_LOGIC;
-			f : OUT	STD_LOGIC);
-END mux2to1;
-
-ARCHITECTURE Structure of mux2to1 IS
-BEGIN
-	PROCESS(i0, i1, sel)
-	BEGIN
-		IF (sel = '1') THEN
-			f <= i1;
-		ELSE
-			f <= i0;
-		END IF;
 	END PROCESS;
 END Structure;
 

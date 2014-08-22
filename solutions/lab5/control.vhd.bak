@@ -1,0 +1,131 @@
+-- User-Encoded State Machine
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity control is
+        port(   KEY  : in std_logic_vector(3 downto 0);
+                LEDR          : out std_logic_vector(17 downto 0);
+                LEDG : out std_logic_vector(8 downto 0);
+                HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7 : out std_logic_vector(0 to 6));
+end control;
+
+architecture Structure of control is
+       
+		 COMPONENT hexdisplay
+                PORT (C        : IN        STD_LOGIC_VECTOR(4 DOWNTO 0);
+                      H        : OUT        STD_LOGIC_VECTOR(0 TO 6));
+        END COMPONENT;
+        
+        -- Build an enumerated type for the state machine
+        type proc_state is (FETCH, DECODE, EXECUTE, MEMORY_WRITE);
+        
+        -- Registers to hold the current state and the next state
+        signal present_state, next_state           : proc_state;
+        -- Attribute to declare a specific encoding for the states
+        attribute syn_encoding                                  : string;
+        attribute syn_encoding of proc_state : type is "00 01 10 11";
+        
+        SIGNAL Clock : STD_LOGIC;
+		  SIGNAL IR : STD_LOGIC_VECTOR(17 downto 0)
+		  SIGNAL OPCODE: STD_LOGIC_VECTOR(2 downto 0);
+		  SIGNAL DADDR, SADDR1,SADDR2 : STD_LOGIC_VECTOR(4 downto 0);
+		  
+        SIGNAL displayb0, displayb1, displayb2, displayb3, displayb4,
+                displayb5, displayb6, displayb7 : STD_LOGIC_VECTOR(4 downto 0);
+        
+begin
+        
+        Clock <= KEY(0);
+		  reset <= KEY(1);
+		  
+		  OPCODE <= IR(17 downto 15);
+		  DADDR <= IR(14 downto 10);
+		  SADDR1 <= IR(9 downto 5);
+		  SADDR2 <= IR (4 downto 0);
+        
+        -- Move to the next state
+        process(Clock)
+        begin
+        
+                if (reset = '0') then
+					 
+                        present_state <= FETCH;
+								
+                elsif (Clock='0' and Clock'event) then
+                        
+								present_state <= next_state;
+                end if;
+        end process;
+
+      
+        process (present_state)
+        begin
+                case present_state is
+                       
+							  when FETCH =>
+                        
+                              
+                           next_state <= DECODE;
+										
+                        when DECODE =>
+                                
+                               
+									next_state <= EXECUTE;
+										  
+                        when EXECUTE =>
+								
+									next_state <= MEMORY_WRITE;
+									
+								when MEMORY_WRITE =>
+                        
+									next_state <= FETCH;
+                end case;
+        end process;
+        
+        display0: hexdisplay PORT MAP (displayb0, HEX0);
+        display1: hexdisplay PORT MAP (displayb1, HEX1);
+        display2: hexdisplay PORT MAP (displayb2, HEX2);
+        display3: hexdisplay PORT MAP (displayb3, HEX3);
+        display4: hexdisplay PORT MAP (displayb4, HEX4);
+        display5: hexdisplay PORT MAP (displayb5, HEX5);
+        display6: hexdisplay PORT MAP (displayb6, HEX6);
+        display7: hexdisplay PORT MAP (displayb7, HEX7);
+        
+end Structure;
+
+-- 7 seg display
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY hexdisplay IS
+        PORT (C        : IN        STD_LOGIC_VECTOR(4 DOWNTO 0);
+                        H        : OUT        STD_LOGIC_VECTOR(0 TO 6));
+END hexdisplay;
+
+ARCHITECTURE Structure OF hexdisplay IS
+BEGIN
+        PROCESS (C)
+        BEGIN
+                CASE C IS
+                        WHEN "00000" => H <= "0000001";
+                        WHEN "00001" => H <= "1001111";
+                        WHEN "00010" => H <= "0010010";  
+                        WHEN "00011" => H <= "0000110";
+                        WHEN "00100" => H <= "1001100"; 
+                        WHEN "00101" => H <= "0100100"; 
+                        WHEN "00110" => H <= "0100000"; 
+                        WHEN "00111" => H <= "0001111"; 
+                        WHEN "01000" => H <= "0000000"; 
+                        WHEN "01001" => H <= "0000100"; 
+                        WHEN "01010" => H <= "0001000"; 
+                        WHEN "01011" => H <= "1100000"; 
+                        WHEN "01100" => H <= "1110010"; 
+                        WHEN "01101" => H <= "1000010"; 
+                        WHEN "01110" => H <= "0110000"; 
+                        WHEN "01111" => H <= "0111000"; 
+                        WHEN "10000" => H <= "1111110";
+                        WHEN "10001" => H <= "1111111";
+                        WHEN OTHERS => H <= "ZZZZZZZ";
+                END CASE;
+        END PROCESS;
+END Structure;

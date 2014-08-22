@@ -1,29 +1,37 @@
 |part3
 SW[0] => mux4to1:m40.i0
 SW[0] => mux4to1:m40.i1
+SW[0] => mux4to1:m44.i1
 SW[1] => mux4to1:m41.i0
 SW[1] => mux4to1:m41.i1
+SW[1] => mux4to1:m45.i1
 SW[2] => mux4to1:m42.i0
 SW[2] => mux4to1:m42.i1
+SW[2] => mux4to1:m46.i1
 SW[3] => mux4to1:m43.i0
 SW[3] => mux4to1:m43.i1
-SW[4] => mux2to1:m20.i0
-SW[5] => mux2to1:m21.i0
-SW[6] => mux2to1:m22.i0
-SW[7] => mux2to1:m23.i0
-SW[8] => mux2to1:m20.sel
-SW[8] => mux2to1:m21.sel
-SW[8] => mux2to1:m22.sel
-SW[8] => mux2to1:m23.sel
+SW[3] => mux4to1:m47.i1
+SW[4] => mux4to1:m44.i0
+SW[5] => mux4to1:m45.i0
+SW[6] => mux4to1:m46.i0
+SW[7] => mux4to1:m47.i0
 SW[8] => mux4to1:m40.sel[0]
 SW[8] => mux4to1:m41.sel[0]
 SW[8] => mux4to1:m42.sel[0]
 SW[8] => mux4to1:m43.sel[0]
-SW[8] => fulladder:fa0.Cin
 SW[9] => mux4to1:m40.sel[1]
 SW[9] => mux4to1:m41.sel[1]
 SW[9] => mux4to1:m42.sel[1]
 SW[9] => mux4to1:m43.sel[1]
+SW[10] => mux4to1:m44.sel[0]
+SW[10] => mux4to1:m45.sel[0]
+SW[10] => mux4to1:m46.sel[0]
+SW[10] => mux4to1:m47.sel[0]
+SW[11] => mux4to1:m44.sel[1]
+SW[11] => mux4to1:m45.sel[1]
+SW[11] => mux4to1:m46.sel[1]
+SW[11] => mux4to1:m47.sel[1]
+SW[12] => fulladder:fa0.Cin
 HEX3[6] <= bcd7seg:displayS.H[6]
 HEX3[5] <= bcd7seg:displayS.H[5]
 HEX3[4] <= bcd7seg:displayS.H[4]
@@ -48,34 +56,6 @@ HEX7[0] <= bcd7seg:displayA.H[0]
 LEDG[0] <= fulladder:fa3.Cout
 LEDR[0] <= <GND>
 LEDR[1] <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|part3|mux2to1:m20
-i0 => f.DATAA
-i1 => f.DATAB
-sel => f.OUTPUTSELECT
-f <= f.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|part3|mux2to1:m21
-i0 => f.DATAA
-i1 => f.DATAB
-sel => f.OUTPUTSELECT
-f <= f.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|part3|mux2to1:m22
-i0 => f.DATAA
-i1 => f.DATAB
-sel => f.OUTPUTSELECT
-f <= f.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|part3|mux2to1:m23
-i0 => f.DATAA
-i1 => f.DATAB
-sel => f.OUTPUTSELECT
-f <= f.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |part3|mux4to1:m40
@@ -109,6 +89,46 @@ f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |part3|mux4to1:m43
+i0 => Mux0.IN0
+i1 => Mux0.IN1
+i2 => Mux0.IN2
+i3 => Mux0.IN3
+sel[1] => Mux0.IN5
+sel[0] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|mux4to1:m44
+i0 => Mux0.IN0
+i1 => Mux0.IN1
+i2 => Mux0.IN2
+i3 => Mux0.IN3
+sel[1] => Mux0.IN5
+sel[0] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|mux4to1:m45
+i0 => Mux0.IN0
+i1 => Mux0.IN1
+i2 => Mux0.IN2
+i3 => Mux0.IN3
+sel[1] => Mux0.IN5
+sel[0] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|mux4to1:m46
+i0 => Mux0.IN0
+i1 => Mux0.IN1
+i2 => Mux0.IN2
+i3 => Mux0.IN3
+sel[1] => Mux0.IN5
+sel[0] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part3|mux4to1:m47
 i0 => Mux0.IN0
 i1 => Mux0.IN1
 i2 => Mux0.IN2
